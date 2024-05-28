@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import import Profesor, Curso, Estudiante, Casa
+from .models import Profesor, Curso, Estudiante, Casa
 from PIL import Image
 
 def home(req):
