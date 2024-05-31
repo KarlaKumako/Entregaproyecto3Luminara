@@ -8,7 +8,7 @@ def home(req):
 
 def lista_profesores(req):
     #profesores = Profesor.objects.all()
-    return render(req, 'Profesor.html', {'profesores': profesores})
+    return render(req, 'Profesor.html',{})
 
 def lista_cursos(req):
     #cursos = Curso.objects.all()
