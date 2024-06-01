@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Profesor, Curso, Estudiante, Casa
-from .forms import Estudianteformulario
+from .forms import Estudianteformulario,Contactenosformulario
 
 def home(req):
     return render(req, 'home.html')
@@ -29,3 +29,14 @@ def Registrate(request):
         form = Estudianteformulario()
 
     return render(request, 'Registrate.html', {'form': form})
+
+def Contacto(request):
+    if request.method == 'POST':
+        formulariocontacto = Contactenosformulario(request.POST)
+        if formulariocontacto.is_valid():
+            formulariocontacto.save()
+            return redirect('Home')  # Cambia 'registro_exitoso' al nombre de la vista adecuada
+    else:
+        formulariocontacto = Contactenosformulario()
+
+    return render(request, 'Contacto.html', {'formulariocontacto': formulariocontacto})

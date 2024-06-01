@@ -18,10 +18,14 @@
     <section id="contact" class="contact py-5">
         <div class="container">
             <div class="section-title text-center">
-                <h2>Bienvenidos al Portal de Registro de Estudiantes Nuevos</h2>
-                <!-- Textos introductorios omitidos para brevedad -->
+                <h2>Bienvenidos al Portal de Registro de Estudiantes Nuevos</h2><br>
+                <p class="lead">¡Bienvenidos al mágico mundo de la Escuela Luminara! Estamos encantados de que estés considerando unirte a nuestra comunidad mágica, donde la naturaleza y la magia se entrelazan para ofrecer una educación única y emocionante.</p><br>
+                <p style="text-align: left; margin-bottom: 20px;">En este portal de registro, podrás iniciar el viaje hacia el descubrimiento de tus habilidades mágicas y el desarrollo de tu potencial en un entorno seguro y en armonía con la naturaleza. Estamos comprometidos a ofrecer una experiencia educativa que no solo fortalezca tu conocimiento en el arte mágico, sino que también fomente valores de respeto por el entorno natural y la diversidad cultural.</p><br>
+                <p style="text-align: left; margin-bottom: 20px;">Por favor, completa el formulario de registro a continuación para comenzar tu aventura en Luminara. Estamos emocionados de conocerte y acompañarte en este extraordinario viaje de aprendizaje y descubrimiento.</p><br>
+                <p style="text-align: left; margin-bottom: 20px;">¡Bienvenidos, jóvenes magos y brujas, a Luminara donde los sueños se convierten en realidad!</p>
+                
             </div>
-          <<form action="{% url 'Registrate' %}" method="post">
+          <form action="{% url 'Registrate' %}" method="post">
               {% csrf_token %}
               <div class="form-group">
                   <label for="{{ form.nombre.id_for_label }}">Nombre</label>
@@ -42,7 +46,7 @@
               <div class="form-group">
                   <label for="{{ form.habilidad_magica.id_for_label }}">Habilidad Mágica</label>
                   {{ form.habilidad_magica }}
-              </div>
+              </div><br>
               <button type="submit" class="btn btn-primary">Registrar</button>
           </form>
         </div>

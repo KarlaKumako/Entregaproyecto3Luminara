@@ -2,21 +2,22 @@ from django.db import models
 
 
 class Grupos(models.Model):
-    Aprendices_de_las_Estrellas = 'AES'
-    Exploradores_de_los_Encantos = 'EXE'
-    Guardianes_de_las_Criaturas = 'GCR'
-    Alquimistas_del_Bosque = 'ABO'
-    Maestros_de_la_Magia = 'MAM'
+    Aprendices_de_las_Estrellas = 'Aprendices de las Estrellas'
+    Exploradores_de_los_Encantos = 'Exploradores de los Encantos'
+    Guardianes_de_las_Criaturas = 'Guardianes de las Criaturas'
+    Alquimistas_del_Bosque = 'Alquimistas del Bosque'
+    Maestros_de_la_Magia = 'Maestros de la Magia'
     
     Grupos_CHOICES = [
-        (Aprendices_de_las_Estrellas, 'Aprendices_de_las_Estrellas'),
-        (Exploradores_de_los_Encantos, 'Exploradores_de_los_Encantos'),
-        (Guardianes_de_las_Criaturas, 'Guardianes_de_las_Criaturas'),
-        (Maestros_de_la_Magia, 'Maestros_de_la_Magia'),
+        (Aprendices_de_las_Estrellas, '1 año : Aprendices de las Estrellas'),
+        (Exploradores_de_los_Encantos, '2 año : Exploradores de los Encantos'),
+        (Guardianes_de_las_Criaturas, '3 año :Guardianes de las Criaturas'),
+        (Alquimistas_del_Bosque, '4 año : Alquimistas del Bosque'),
+        (Maestros_de_la_Magia, '5 año :Maestros de la Magia'),
     ]
     
     nombre = models.CharField(
-        max_length=3,
+        max_length=30,
         choices=Grupos_CHOICES,
         unique=True,
     )
@@ -86,7 +87,14 @@ class Estudiante(models.Model):
     def __str__(self):
         return f'{self.nombre} {self.apellido} {self.email} {self.casa}{self.habilidad_magica}'
     
+class Contacto(models.Model):
+    nombre = models.CharField(max_length=100)
+    email = models.EmailField()
+    asunto = models.CharField(max_length=255)
+    mensaje = models.TextField()
 
+    def __str__(self):
+        return f"{self.asunto} by {self.nombre}"
     
 
     

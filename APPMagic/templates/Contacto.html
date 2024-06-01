@@ -1,12 +1,19 @@
 
+{%extends 'Base.html'%}
 
+{%block contenidobipolar%}
 <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
       <div class="container">
 
         <div class="section-title">
-          <h2>Contact</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <h2>Contactanos : ¡Tus preguntas y comentarios son esenciales para nosotros!</h2>
+          
+          <p style="text-align: right; margin-bottom: 20px;">En Luminara, estamos siempre dispuestos a escuchar y ayudar. Ya sea que tengas preguntas sobre nuestro proceso de admisión, necesites más información sobre nuestros programas mágicos, o simplemente quieras saber más sobre la vida diaria en el corazón del Bosque Encantado, estamos aquí para guiarte.</p>
+          
+          <p style="text-align: right; margin-bottom: 20px;">No dudes en escribirnos o llamarnos, nuestro equipo mágico está listo para atender todas tus inquietudes y asegurarse de que recibas toda la ayuda que necesitas. Nos comprometemos a responder a tus consultas lo más rápido posible, con toda la sabiduría y la magia que caracteriza a nuestra escuela.</p>
+          
+          <p style="text-align: right; margin-bottom: 20px;">Completa el siguiente formulario o utiliza la información de contacto a continuación para comunicarte con nosotros. ¡Esperamos con ansias escuchar de ti y ayudarte en tu camino hacia la magia!</p>
         </div>
 
         <div class="row contact-info">
@@ -14,15 +21,19 @@
           <div class="col-md-4">
             <div class="contact-address">
               <i class="bi bi-geo-alt"></i>
-              <h3>Address</h3>
-              <address>A108 Adam Street, NY 535022, USA</address>
+              <h3>Dirección</h3>
+              <address>Camino de los Cedros Mágicos, Kilómetro 7
+                Bosque de las Maravillas, Sector de las Hadas
+                Codex 12345
+                Pueblo Encantado, Provincia de la Magia
+                Latinoamérica</address>
             </div>
           </div>
 
           <div class="col-md-4">
             <div class="contact-phone">
               <i class="bi bi-phone"></i>
-              <h3>Phone Number</h3>
+              <h3>Teléfono</h3>
               <p><a href="tel:+155895548855">+1 5589 55488 55</a></p>
             </div>
           </div>
@@ -31,36 +42,29 @@
             <div class="contact-email">
               <i class="bi bi-envelope"></i>
               <h3>Email</h3>
-              <p><a href="mailto:info@example.com">info@example.com</a></p>
+              <p><a href="mailto:info@example.com">MagicHappends@luminara.com</a></p>
             </div>
           </div>
 
         </div>
 
-        <div class="form">
-          <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-            <div class="row">
-              <div class="col-md-6 form-group">
-                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-              </div>
-              <div class="col-md-6 form-group mt-3 mt-md-0">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
-              </div>
-            </div>
-            <div class="form-group mt-3">
-              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-            </div>
-            <div class="form-group mt-3">
-              <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-            </div>
-            <div class="my-3">
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your message has been sent. Thank you!</div>
-            </div>
-            <div class="text-center"><button type="submit">Send Message</button></div>
-          </form>
-        </div>
+        <section id="contact" class="contact">
+    <div class="container">        
+
+        <form action="{% url 'Contacto' %}" method="post">
+            {% csrf_token %}
+            
+            {{ formulariocontacto.nombre }}<br>
+            {{ formulariocontacto.email }}<br>
+            {{ formulariocontacto.asunto }}<br>
+            {{ formulariocontacto.mensaje }}<br>
+            
+            <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+        </form>
+    </div>
+</section>
 
       </div>
     </section><!-- End Contact Section -->
+
+{%endblock contenidobipolar%}
