@@ -1,4 +1,194 @@
 {%extends 'Base.html'%}
 
 {%block contenidobipolar%}
+<body>
+    <section id=" Cursos" class="contact py-5">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>Explora Nuestro Mundo Mágico de Aprendizaje</h2><br>
+                
+                <p style="text-align: left; margin-bottom: 20px;">Bienvenidos al emocionante abanico de cursos ofrecidos en Luminara, donde cada clase es una puerta a nuevos mundos de conocimiento y magia. Aquí, los estudiantes se sumergen en el estudio de las artes mágicas, desde hechizos básicos hasta complejas transformaciones y el cuidado de criaturas mágicas. Nuestro currículo está diseñado para cultivar habilidades, profundizar conocimientos y despertar una eterna curiosidad por el aprendizaje.</p><br>
+                <p style="text-align: left; margin-bottom: 20px;">Cada curso en nuestra escuela es más que una simple lección; es una aventura que desafía a nuestros estudiantes a pensar críticamente, actuar con compasión y dominar las habilidades que definirán su futuro mágico. Este listado proporciona una visión detallada de los cursos disponibles por grupo de año, asegurando que cada estudiante pueda planificar su trayectoria educativa de manera informada y entusiasta.</p><br>              
+            </div>
+
+<!-- Courses Section -->
+{% load static %}
+<style>
+  .course-item img {
+    width: 100%;  /* Ajusta la imagen a la anchura del contenedor */
+    height: 200px; /* Altura fija para todas las imágenes */
+    object-fit: cover; /* Asegura que la imagen cubra el espacio sin distorsionarse */
+  }
+</style>
+    <section id="courses" class="courses section">
+
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+            <div class="course-item">
+              <img src="{% static 'assets/img/Cursos/curso1.jpg' %}" class="img-fluid" alt="...">
+              <div class="course-content">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                
+                </div>
+
+                <h3><a href="course-details.html">Introducción a la Magia</a></h3>
+                <p class="description">Este curso básico introduce a los estudiantes a los fundamentos de la magia. Aprenderán sobre la historia de la magia, los principios básicos de las artes mágicas y una visión general de las diferentes disciplinas mágicas.</p>
+                <div class="trainer d-flex justify-content-between align-items-center">
+                  <div class="trainer-profile d-flex align-items-center">
+                    
+                  </div>
+                  <div class="trainer-rank d-flex align-items-center">
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- End Course Item-->
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+            <div class="course-item">
+              <img src="{% static 'assets/img/Cursos/curso2.jpg' %}" class="img-fluid" alt="...">
+              <div class="course-content">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                
+                </div>
+
+                <h3><a href="course-details.html">Hechizos y Encantamientos</a></h3>
+                <p class="description">Los estudiantes aprenden a conjurar y controlar una variedad de hechizos y encantamientos. El curso cubre desde hechizos básicos hasta técnicas más avanzadas, con un enfoque en la pronunciación correcta y la ejecución precisa.</p>
+                <div class="trainer d-flex justify-content-between align-items-center">
+                  <div class="trainer-profile d-flex align-items-center">
+                    
+                  </div>
+                  <div class="trainer-rank d-flex align-items-center">
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- End Course Item-->
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+            <div class="course-item">
+              <img src="{% static 'assets/img/Cursos/curso3.jpg' %}" class="img-fluid" alt="...">
+              <div class="course-content">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                
+                </div>
+
+                <h3><a href="course-details.html">Herbología Mágica</a></h3>
+                <p class="description">Los estudiantes exploran el mundo de las plantas mágicas, aprendiendo a identificar, cultivar y utilizar diversas hierbas mágicas. Este curso combina teoría y práctica, enseñando a los estudiantes a aprovechar las propiedades curativas y potenciadoras de las plantas.</p>
+                <div class="trainer d-flex justify-content-between align-items-center">
+                  <div class="trainer-profile d-flex align-items-center">
+                    
+                  </div>
+                  <div class="trainer-rank d-flex align-items-center">
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- End Course Item-->
+         <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+            <div class="course-item">
+              <img src="{% static 'assets/img/Cursos/curso4.jpg' %}" class="img-fluid" alt="...">
+              <div class="course-content">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                
+                </div>
+
+                <h3><a href="course-details.html">Pociones y Alquimia</a></h3>
+                <p class="description">Este curso enseña a los estudiantes a crear pociones mágicas utilizando ingredientes naturales y técnicas alquímicas. Los estudiantes aprenden sobre las propiedades de diferentes ingredientes y cómo combinarlos para lograr efectos deseados en las pociones.</p>
+                <div class="trainer d-flex justify-content-between align-items-center">
+                  <div class="trainer-profile d-flex align-items-center">
+                    
+                  </div>
+                  <div class="trainer-rank d-flex align-items-center">
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- End Course Item--> 
+
+<div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+            <div class="course-item">
+              <img src="{% static 'assets/img/Cursos/curso5.jpg' %}" class="img-fluid" alt="...">
+              <div class="course-content">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                
+                </div>
+
+                <h3><a href="course-details.html">Transformaciones y Metamorfosis</a></h3>
+                <p class="description">ELos estudiantes aprenden el arte de la transformación mágica, incluyendo cómo cambiar la forma de objetos y seres vivos. El curso abarca desde las transformaciones más simples hasta las metamorfosis más complejas y avanzadas.</p>
+                <div class="trainer d-flex justify-content-between align-items-center">
+                  <div class="trainer-profile d-flex align-items-center">
+                    
+                  </div>
+                  <div class="trainer-rank d-flex align-items-center">
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- End Course Item-->
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+            <div class="course-item">
+              <img src="{% static 'assets/img/Cursos/curso6.jpg' %}" class="img-fluid" alt="...">
+              <div class="course-content">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                
+                </div>
+
+                <h3><a href="course-details.html">Cuidado de Criaturas Mágicas</a></h3>
+                <p class="description">Este curso se centra en el estudio y el cuidado de diversas criaturas mágicas. Los estudiantes aprenden sobre los hábitats, comportamientos y necesidades de estas criaturas, así como técnicas para su manejo seguro y ético.</p>
+                <div class="trainer d-flex justify-content-between align-items-center">
+                  <div class="trainer-profile d-flex align-items-center">
+                    
+                  </div>
+                  <div class="trainer-rank d-flex align-items-center">
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- End Course Item-->
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+            <div class="course-item">
+              <img src="{% static 'assets/img/Cursos/curso7.jpg' %}" class="img-fluid" alt="...">
+              <div class="course-content">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                
+                </div>
+
+                <h3><a href="course-details.html">Astronomía Mágica</a></h3>
+                <p class="description">Los estudiantes exploran la influencia de los cuerpos celestes en la magia y la vida diaria. El curso incluye observación astronómica, interpretación de eventos celestiales y su aplicación en la práctica mágica.</p>
+                <div class="trainer d-flex justify-content-between align-items-center">
+                  <div class="trainer-profile d-flex align-items-center">
+                    
+                  </div>
+                  <div class="trainer-rank d-flex align-items-center">
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- End Course Item-->
+        </div>
+
+      </div>
+
+    </section><!-- /Courses Section -->
+   
 {%endblock contenidobipolar%}

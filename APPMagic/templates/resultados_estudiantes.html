@@ -1,0 +1,51 @@
+{%extends 'Base.html'%}
+
+{%block contenidobipolar%}
+<!-- ======= Nuevos estudiantes ======= -->
+
+<body>
+    <section id=" Nuevos estudiantes" class="contact py-5">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>Bienvenidos Nuevos Estudiantes</h2><br>
+                <p class="lead">¡Gracias por registrarte para unirte a nosotros en la Escuela Mágica Luminara!</p><br>
+                <p style="text-align: left; margin-bottom: 20px;">En Luminara, cada nuevo estudiante trae consigo una chispa única de magia y potencial. Esta página está dedicada a dar la bienvenida a nuestros recientes miembros de la comunidad mágica, quienes iniciarán su viaje lleno de aprendizaje, descubrimiento y aventuras mágicas. Aquí encontrarás un listado de los estudiantes que se han unido a nosotros este año, representando el futuro brillante de la magia.</p><br>
+                <p style="text-align: left; margin-bottom: 20px;">Nuestros estudiantes ingresantes son más que simplemente nombres en un registro; son jóvenes magos y brujas que transformarán el mundo mágico con su creatividad, curiosidad y pasión. Te invitamos a conocerlos y celebrar su llegada, mientras ellos dan sus primeros pasos hacia la maestría en las artes mágicas.</p><br>
+                
+                
+            </div>
+
+    <body>
+    <div class="container">
+        <h2>Resultados de Búsqueda</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                    <th>Casa</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for estudiante in estudiantes %}
+                <tr>
+                    <td>{{ estudiante.nombre }}</td>
+                    <td>{{ estudiante.apellido }}</td>
+                    <td>{{ estudiante.email }}</td>
+                    <td>{{ estudiante.casa.nombre }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4">No se encontraron resultados.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+
+    
+</body>
+
+{%endblock contenidobipolar%}

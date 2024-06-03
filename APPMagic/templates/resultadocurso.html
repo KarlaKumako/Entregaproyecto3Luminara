@@ -1,0 +1,32 @@
+{%extends 'Base.html'%}
+
+{%block contenidobipolar%}
+<body>
+    <section id=" Cursos" class="contact py-5">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>Explora Nuestro Mundo Mágico de Aprendizaje</h2><br>
+                
+                <p style="text-align: left; margin-bottom: 20px;">Bienvenidos al emocionante abanico de cursos ofrecidos en Luminara, donde cada clase es una puerta a nuevos mundos de conocimiento y magia. Aquí, los estudiantes se sumergen en el estudio de las artes mágicas, desde hechizos básicos hasta complejas transformaciones y el cuidado de criaturas mágicas. Nuestro currículo está diseñado para cultivar habilidades, profundizar conocimientos y despertar una eterna curiosidad por el aprendizaje.</p><br>
+                <p style="text-align: left; margin-bottom: 20px;">Cada curso en nuestra escuela es más que una simple lección; es una aventura que desafía a nuestros estudiantes a pensar críticamente, actuar con compasión y dominar las habilidades que definirán su futuro mágico. Este listado proporciona una visión detallada de los cursos disponibles por grupo de año, asegurando que cada estudiante pueda planificar su trayectoria educativa de manera informada y entusiasta.</p><br>              
+            </div>
+
+{% if cursos %}
+    <h2>Resultados de la búsqueda:</h2>
+    <ul>
+        {% for curso in cursos %}
+            <li>
+                <h3>{{ curso.Curso }}</h3>
+                <p><strong>Descripción:</strong> {{ curso.descripcion }}</p>
+                <p><strong>Grupos:</strong>
+                    {% for grupo in curso.Grupos.all %}
+                        {{ grupo.nombre }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No se encontraron cursos que coincidan con su búsqueda.</p>
+{% endif %}
+{%endblock contenidobipolar%}

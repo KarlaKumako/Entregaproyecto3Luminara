@@ -1,14 +1,18 @@
 from django.contrib import admin
 from django.urls import path, include
-from APPMagic.views import Profesor, Curso, Estudiante, Casa, home, Registrate, Contacto
+from APPMagic.views import Profesores, Cursos, Estudiantes, Casa, home, Registrate, Contacto, Postulantes, Postulate,Estudiantesnuevos,Postulantes,Buscacursos
 
 urlpatterns = [
     path('', home, name='Home'),
-    path('Curso/', Curso, name='Curso'),
-    path('Estudiante/', Estudiante, name='Estudiante'),
-    path('Profesor/', Profesor, name='Profesor'),
+    path('Curso/', Cursos, name='Curso'),    
+    path('Buscacursos/', Buscacursos, name='Buscacursos'),
+    path('Estudiante/', Estudiantes, name='Estudiante'),
+    path('Profesor/', Profesores, name='Profesor'),
     path('Casa/', Casa, name='Casa'),
     path('Registrate/', Registrate, name='Registrate'),
+    path('Estudiantesnuevos/', Estudiantesnuevos, name='Estudiantesnuevos'),
     path('Contacto/', Contacto, name='Contacto'),
+    path('Postulantes/', Postulantes, name='Postulantes'),
+    path('Postulate/', Postulate, name='Postulate'),   
 ]
 

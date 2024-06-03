@@ -50,11 +50,25 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="{% url 'Home' %}" class="active">Home<br></a></li>
-          <li><a href="{% url 'Casa' %}">Casas</a></li>
-          <li><a href="{% url 'Profesor' %}">Profesores</a></li>
-          <li><a href="{% url 'Estudiante' %}">Estudiantes</a></li>
-          <li><a href="{% url 'Curso' %}">Cursos</a></li>          
-          <li><a href="{% url 'Registrate' %}">Registrate</a></li>
+          <li><a href="{% url 'Casa' %}">Casas</a></li>          
+          <li class="dropdown"><a href="#"><span>Profesores</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="{% url 'Profesor' %}">Nuestros profesores</a></li>              
+              <li><a href="{% url 'Postulate' %}">Postulate</a></li>
+              <li><a href="{% url 'Postulantes' %}">Nuestros postulantes</a></li>              
+            </ul>
+          </li>          
+          <li class="dropdown"><a href="#"><span>Estudiantes</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="{% url 'Estudiante' %}">Entorno</a></li>              
+              <li><a href="{% url 'Registrate' %}">Registrate</a></li>
+              <li><a href="{% url 'Estudiantesnuevos' %}">Nuevos estudiantes</a></li>              
+            </ul>           
+          <li class="dropdown"><a href="#"><span>Cursos</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="{% url 'Curso' %}">Explora Cursos</a></li>              
+              <li><a href="{% url 'Buscacursos' %}">Busca cursos</a></li>             
+            </ul>  
           <li><a href="{% url 'Contacto' %}">Contactanos</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>

@@ -1,0 +1,41 @@
+{%extends 'Base.html'%}
+
+{%block contenidobipolar%}
+<!-- ======= Nuevos estudiantes ======= -->
+
+<body>
+    <section id=" Nuevos estudiantes" class="contact py-5">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>Bienvenidos Nuevos Estudiantes</h2><br>
+                <p class="lead">¡Gracias por registrarte para unirte a nosotros en la Escuela Mágica Luminara!</p><br>
+                <p style="text-align: left; margin-bottom: 20px;">En Luminara, cada nuevo estudiante trae consigo una chispa única de magia y potencial. Esta página está dedicada a dar la bienvenida a nuestros recientes miembros de la comunidad mágica, quienes iniciarán su viaje lleno de aprendizaje, descubrimiento y aventuras mágicas. Aquí encontrarás un listado de los estudiantes que se han unido a nosotros este año, representando el futuro brillante de la magia.</p><br>
+                <p style="text-align: left; margin-bottom: 20px;">Nuestros estudiantes ingresantes son más que simplemente nombres en un registro; son jóvenes magos y brujas que transformarán el mundo mágico con su creatividad, curiosidad y pasión. Te invitamos a conocerlos y celebrar su llegada, mientras ellos dan sus primeros pasos hacia la maestría en las artes mágicas.</p><br>
+                
+                
+            </div>
+
+            <body>
+    <div class="container">
+        <h2>Búsqueda de Estudiantes</h2>
+        <form action="{% url 'Estudiantesnuevos' %}" method="GET">
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre:</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre del estudiante">
+            </div>
+            <div class="mb-3">
+                <label for="apellido" class="form-label">Apellido:</label>
+                <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingrese el apellido del estudiante">
+            </div>
+            <div class="mb-3">
+                <label for="casa" class="form-label">Casa:</label>
+                <input type="text" class="form-control" id="casa" name="casa" placeholder="Ingrese la casa del estudiante">
+            </div>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+    </div>
+
+</body>
+<br>
+
+{%endblock contenidobipolar%}

@@ -31,12 +31,17 @@ class Grupos(models.Model):
     
 
 class Curso(models.Model):
-    Curso = models.CharField(max_length=100)
-    FIELDNAME= models.ManyToManyField(Grupos)
+    Curso = models.CharField(max_length=100, unique=True)
+    Grupos= models.ManyToManyField(Grupos)
     descripcion = models.TextField()
 
     def __str__(self):
-        return self.nombre
+        return f'{self.Curso} {self.Grupos} {self.descripcion}' 
+    
+    class Meta():
+   
+     ordering=('Curso',)
+    
 
 
 class Profesor(models.Model):
@@ -44,12 +49,12 @@ class Profesor(models.Model):
     apellido = models.CharField(max_length=30)
     email = models.EmailField(null=True)
     profesion = models.CharField(max_length=30)
-    FIELDNAME= models.ManyToManyField(Curso)
+    Cursos= models.ManyToManyField(Curso)
     hechizo_favorito = models.CharField(max_length=100, null=True)  # Nuevo hechizo favorito
     criatura_magica = models.CharField(max_length=100, null=True)  # Criatura mágica favorita
 
     def __str__(self):
-        return f'{self.nombre} {self.apellido} - {self.profesion} {self.email} {self.hechizo_favorito} {self.criatura_magica}'
+        return f'{self.nombre} {self.apellido} - {self.profesion} {self.email}'
 
 class Casa(models.Model):
     GRYFFINDOR = 'Gryffindor'
@@ -76,6 +81,8 @@ class Casa(models.Model):
 
     def __str__(self):
         return self.nombre
+    
+    
 
 class Estudiante(models.Model):
     nombre = models.CharField(max_length=30)
@@ -85,7 +92,7 @@ class Estudiante(models.Model):
     habilidad_magica = models.CharField(max_length=100, null=True)  # Nueva habilidad mágica
 
     def __str__(self):
-        return f'{self.nombre} {self.apellido} {self.email} {self.casa}{self.habilidad_magica}'
+        return f'{self.nombre} {self.apellido} {self.email} {self.casa}'
     
 class Contacto(models.Model):
     nombre = models.CharField(max_length=100)

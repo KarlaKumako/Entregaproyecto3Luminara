@@ -1,0 +1,46 @@
+{%extends 'Base.html'%}
+
+{%block contenidobipolar%}
+
+<!-- ======= Postulate ======= -->
+
+<body>
+    <section id="Postulantes" class="contact py-5">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>Gracias por tu Postulación</h2><br>
+                <p class="lead">¡Gracias por postularte para unirte a nuestro equipo en la Escuela Mágica Luminara!</p><br>
+                <p style="text-align: left; margin-bottom: 20px;">Valoramos profundamente tu interés en formar parte de nuestra comunidad educativa y en contribuir a la formación mágica de nuestros estudiantes. Tu postulación ha sido recibida y está siendo cuidadosamente revisada por nuestro equipo de selección.</p><br>
+                <p style="text-align: left; margin-bottom: 20px;">Entendemos la importancia de tu tiempo y compromiso, por lo que te mantendremos informado(a) sobre el estado de tu aplicación a la brevedad posible. Mientras tanto, si tienes alguna pregunta o necesitas más información, no dudes en ponerte en contacto con nosotros a través del Contactanos.</p><br>
+                <p style="text-align: left; margin-bottom: 20px;">Apreciamos tu paciencia y entusiasmo por unirte a nosotros en esta mágica aventura educativa. ¡Esperamos poder conocerte pronto y explorar juntos las maravillosas posibilidades que la magia tiene para ofrecer!</p>
+                
+            </div>
+
+
+
+<body>
+    <div class="container">
+        <h2>Búsqueda de Profesores</h2>
+        <form action="{% url 'Postulantes' %}" method="GET">
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre:</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre del profesor">
+            </div>
+            <div class="mb-3">
+                <label for="apellido" class="form-label">Apellido:</label>
+                <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingrese el apellido del profesor">
+            </div>
+            <div class="mb-3">
+                <label for="profesion" class="form-label">Profesión:</label>
+                <input type="text" class="form-control" id="profesion" name="profesion" placeholder="Ingrese la profesión del profesor">
+            </div>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+            <br>
+        </form>
+         <br>
+    </div>
+
+</body>
+</html>
+
+{%endblock contenidobipolar%}

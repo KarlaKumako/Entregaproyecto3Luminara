@@ -1,0 +1,41 @@
+{%extends 'Base.html'%}
+
+{%block contenidobipolar%}
+<!-- ======= Postulate ======= -->
+
+<body>
+    <section id="contact" class="contact py-5">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>Únete a Nuestro Equipo de Profesores Mágicos</h2><br>
+                <p class="lead">¿Eres un apasionado de la magia y la enseñanza? ¿Tienes un profundo conocimiento en el arte mágico y una vocación para inspirar a la próxima generación de magos y brujas? Si es así, ¡nos encantaría conocerte!</p><br>
+                <p style="text-align: left; margin-bottom: 20px;">Luminara está en búsqueda de talentosos y dedicados profesores que deseen formar parte de nuestra comunidad educativa. Nuestro objetivo es proporcionar una educación mágica integral que combine el aprendizaje académico con el respeto por la naturaleza y la diversidad cultural.</p><br>
+                <p style="text-align: left; margin-bottom: 20px;">Si compartes nuestra visión y estás listo para contribuir con tus habilidades y conocimientos mágicos, te invitamos a completar el formulario de postulación a continuación. Estamos emocionados de encontrar personas comprometidas y entusiastas que se unan a nuestro equipo y ayuden a guiar a nuestros estudiantes en su viaje mágico.</p><br>
+                <p style="text-align: left; margin-bottom: 20px;">¡Postula ahora y sé parte de la magia en la Escuela Mágica de Bosque Encantado!</p>
+                
+            </div>
+
+            {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'path/to/bootstrap.css' %}" rel="stylesheet">
+    <title>Postular Profesor</title>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2>Formulario de Postulación para Nuevos Profesores</h2>
+    <form action="{% url 'Postulate' %}" method="post">
+        {% csrf_token %}
+        {{ formularioprofesor.as_p }}
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+</div>
+
+<script src="{% static 'path/to/bootstrap.js' %}"></script>
+</body>
+</html>
+{%endblock contenidobipolar%}
