@@ -7,7 +7,7 @@ from .forms import Estudianteformulario,Contactenosformulario,ProfesorForm,Busqu
 def home(req):
     return render(req, 'home.html')
 
-#Vistas del desplegable profesores
+#Vistas del desplegable profesores, se incluyen los formularios de registro, busqueda y resultados. 
 
 def Profesores(req):    
     return render(req, 'Profesor.html',{})
@@ -33,10 +33,9 @@ def Postulantes(request):
         apellido = form.cleaned_data.get('apellido')
         profesion = form.cleaned_data.get('profesion')
 
-        # Inicializa el queryset
+       
         queryset = Profesor.objects.all()
 
-        # Aplica filtros si se proporciona el campo correspondiente
         if nombre:
             queryset = queryset.filter(nombre__icontains=nombre)
         if apellido:
@@ -49,11 +48,10 @@ def Postulantes(request):
 
     return render(request, 'Postulantes.html', {'form': form})
 
-#Vistas cursos
+#Vistas cursos, se incluye formulario de busqueda.
 
 def Cursos(req):
     return render(req, 'Curso.html', {})
-
 
 
 def Buscacursos(request):
@@ -68,6 +66,7 @@ def Buscacursos(request):
     
     return render(request, 'Buscacurso.html', {'form': form})
 
+#Views sobre el sector "estudiantes", se incluyen formularios de registro y busqueda. 
 
 def Estudiantes(req):
     return render(req, 'Estudiante.html', {})
