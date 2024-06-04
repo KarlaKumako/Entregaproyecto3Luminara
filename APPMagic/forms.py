@@ -61,6 +61,9 @@ class EstudianteSearchForm(forms.Form):
     #curso = forms.CharField(label='Curso', required=False)
     #grupos = forms.CharField(label='Grupos', required=False)
 
+#class CursoSearchForm(forms.Form):
+    #query = forms.CharField(label='Buscar cursos', required=False)
+    #grupo = forms.ModelChoiceField(queryset=Grupos.objects.all(), required=False)
+
 class CursoSearchForm(forms.Form):
-    query = forms.CharField(label='Buscar cursos', required=False)
-    grupo = forms.ModelChoiceField(queryset=Grupos.objects.all(), empty_label='Todos los grupos', required=False)
+    curso = forms.CharField(label='Buscar curso', max_length=100)

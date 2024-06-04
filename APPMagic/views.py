@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .models import Profesor, Curso, Estudiante, Casa
+from .models import Profesor, Curso, Estudiante, Casa, Grupos
 from .forms import Estudianteformulario,Contactenosformulario,ProfesorForm,BusquedaProfesorForm,EstudianteSearchForm,CursoSearchForm
 
 #VIsta de la Home
@@ -55,26 +55,19 @@ def Cursos(req):
     return render(req, 'Curso.html', {})
 
 
+
 def Buscacursos(request):
+    if request.method == 'POST':
+        form = CursoSearchForm(request.POST)
+        if form.is_valid():
+            curso_buscado = form.cleaned_data['curso']
+            cursos = Curso.objects.filter(Curso__icontains=curso_buscado)
+            return render(request, 'resultadocurso.html', {'cursos': cursos, 'curso_buscado': curso_buscado})
+    else:
+        form = CursoSearchForm()
     
-    form = CursoSearchForm(request.GET or None)
-    cursos = None
+    return render(request, 'Buscacurso.html', {'form': form})
 
-    if form.is_valid():
-        curso = form.cleaned_data.get('curso')
-        grupos = form.cleaned_data.get('grupos')
-
-        cursos = Curso.objects.all()
-
-        if curso:
-            cursos = cursos.filter(Curso__icontains=curso)
-
-        if grupos:
-            cursos = cursos.filter(Grupos__nombre__icontains=grupos)
-        
-        return render(request, 'resultadocurso.html', {'form': form, 'cursos': cursos})
-
-    return render(request, 'Buscacurso.html', {'form': form, 'cursos': cursos})
 
 def Estudiantes(req):
     return render(req, 'Estudiante.html', {})

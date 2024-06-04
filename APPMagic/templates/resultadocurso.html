@@ -11,22 +11,29 @@
                 <p style="text-align: left; margin-bottom: 20px;">Cada curso en nuestra escuela es más que una simple lección; es una aventura que desafía a nuestros estudiantes a pensar críticamente, actuar con compasión y dominar las habilidades que definirán su futuro mágico. Este listado proporciona una visión detallada de los cursos disponibles por grupo de año, asegurando que cada estudiante pueda planificar su trayectoria educativa de manera informada y entusiasta.</p><br>              
             </div>
 
-{% if cursos %}
-    <h2>Resultados de la búsqueda:</h2>
-    <ul>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Resultados de Búsqueda</title>
+</head>
+<body>
+    <h2>Resultados de Búsqueda para "{{ curso_buscado }}"</h2>
+    {% if cursos %}
+        <ul>
         {% for curso in cursos %}
             <li>
-                <h3>{{ curso.Curso }}</h3>
-                <p><strong>Descripción:</strong> {{ curso.descripcion }}</p>
-                <p><strong>Grupos:</strong>
-                    {% for grupo in curso.Grupos.all %}
-                        {{ grupo.nombre }}{% if not forloop.last %}, {% endif %}
-                    {% endfor %}
-                </p>
+                <strong>Curso:</strong> {{ curso.Curso }}<br>
+                <strong>Grupos:</strong> 
+                {% for grupo in curso.Grupos.all %}
+                    {{ grupo.nombre }},
+                {% endfor %}<br>
+                <strong>Descripción:</strong> {{ curso.descripcion }}
             </li>
         {% endfor %}
-    </ul>
-{% else %}
-    <p>No se encontraron cursos que coincidan con su búsqueda.</p>
-{% endif %}
+        </ul>
+    {% else %}
+        <p>No se encontraron cursos.</p>
+    {% endif %}
+</body>
+</html>
 {%endblock contenidobipolar%}
