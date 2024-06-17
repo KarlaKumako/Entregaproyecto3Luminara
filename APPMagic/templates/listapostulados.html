@@ -1,0 +1,26 @@
+
+<body>
+
+<div class="container mt-4">
+    <h2 class="mb-4">Lista de Profesores postulados</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Profesión</th>                
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for profesor in profesores %}
+                <tr>
+                    <td>{{ profesor.nombre }}</td>
+                    <td>{{ profesor.apellido }}</td>
+                    <td>{{ profesor.profesion }}</td>
+                    <td>{{ profesor.email }}</td>                    
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

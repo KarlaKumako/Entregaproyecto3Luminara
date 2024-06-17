@@ -27,7 +27,7 @@ class Grupos(models.Model):
         return self.get_nombre_display()
 
     def __str__(self):
-        return self.nombre
+        return f'{self.nombre}'
     
 
 class Curso(models.Model):
@@ -54,7 +54,7 @@ class Profesor(models.Model):
     criatura_magica = models.CharField(max_length=100, null=True)  # Criatura mágica favorita
 
     def __str__(self):
-        return f'{self.nombre} {self.apellido} - {self.profesion} {self.email}'
+        return f'{self.nombre} {self.apellido} - {self.profesion} - {self.email} - {self.Cursos}'
 
 class Casa(models.Model):
     GRYFFINDOR = 'Gryffindor'

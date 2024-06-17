@@ -7,33 +7,76 @@ from .forms import Estudianteformulario,Contactenosformulario,ProfesorForm,Busqu
 def home(req):
     return render(req, 'home.html')
 
-#Vistas del desplegable profesores, se incluyen los formularios de registro, busqueda y resultados. 
+# Vistas del desplegable profesores:
+
+# #----Vistas profesores:
 
 def Profesores(req):    
     return render(req, 'Profesor.html',{})
 
-def Postulantes(req):    
-    return render(req, 'Postulantes.html',{})
+# #----Vistas profesores postulantes:
 
-def Postulate(request):    
-    if request.method == 'POST':
-        formularioprofesor = ProfesorForm(request.POST)
-        if formularioprofesor.is_valid():
-            formularioprofesor.save()
-            return redirect('Postulantes')  # Redirige a una página de éxito
-    else:
-        formularioprofesor = ProfesorForm()
-    return render(request, 'Postulate.html', {'formularioprofesor': formularioprofesor})
+# def Postulantes(req):    
+#     return render(req, 'Postulantes.html',{})
 
-def Postulantes(request):
+
+# #----Vista formulario postulantes:
+
+# def Postulate(request):    
+#     if request.method == 'POST':
+#         formularioprofesor = ProfesorForm(request.POST)
+#         if formularioprofesor.is_valid():
+#             formularioprofesor.save()
+#             return redirect('Postulantes')  # Redirige a una página de éxito
+#     else:
+#         formularioprofesor = ProfesorForm()
+#     return render(request, 'Busquedapostulado.html', {'formularioprofesor': formularioprofesor})
+
+# #----Vista busqueda de profesores postulantes:
+
+# def Postulantes(request):
+
+#     form = BusquedaProfesorForm(request.GET or None)
+#     if form.is_valid():
+#         # Obtiene los datos limpios del formulario
+#         nombre = form.cleaned_data.get('nombre')
+#         apellido = form.cleaned_data.get('apellido')
+#         profesion = form.cleaned_data.get('profesion')
+
+#         queryset = Profesor.objects.all()
+
+#         if nombre:
+#             queryset = queryset.filter(nombre__icontains=nombre)
+#         if apellido:
+#             queryset = queryset.filter(apellido__icontains=apellido)
+#         if profesion:
+#             queryset = queryset.filter(profesion__icontains=profesion)
+
+#         return render(request, 'resultadobusquedapostulado.html', {'profesores': queryset})
+
+
+#     return render(request, 'listapostulados.html', {'form': form})
+
+# #----Vista lista de profesores postulantes:
+
+# def lista_profesores(request):
+
+#     mis_profesores = Profesor.objects.all()
+
+#     return render(request, 'listapostulados.html', {'profesores': mis_profesores})
+
+def profesores_view(request):
+    # Listar todos los profesores
+    mis_profesores = Profesor.objects.all()
+
+    # Manejar el formulario de búsqueda
     form = BusquedaProfesorForm(request.GET or None)
+    search_results = None
     if form.is_valid():
-        # Obtiene los datos limpios del formulario
         nombre = form.cleaned_data.get('nombre')
         apellido = form.cleaned_data.get('apellido')
-        profesion = form.cleaned_data.get('profesion')
+        profesion = form.cleaned_data.get('profesion')        
 
-       
         queryset = Profesor.objects.all()
 
         if nombre:
@@ -42,17 +85,35 @@ def Postulantes(request):
             queryset = queryset.filter(apellido__icontains=apellido)
         if profesion:
             queryset = queryset.filter(profesion__icontains=profesion)
+        
 
-        return render(request, 'resultados_postulantes.html', {'profesores': queryset})
+        search_results = queryset
+
+    # Manejar el formulario de postulación
+    if request.method == 'POST':
+        formularioprofesor = ProfesorForm(request.POST)
+        if formularioprofesor.is_valid():
+            formularioprofesor.save()
+            return redirect('Postulados')  # Redirige a la misma página después de guardar
+    else:
+        formularioprofesor = ProfesorForm()
+
+    return render(request, 'Postulados.html', {
+        'mis_profesores': mis_profesores,
+        'form': form,
+        'search_results': search_results,
+        'formularioprofesor': formularioprofesor
+    })
 
 
-    return render(request, 'Postulantes.html', {'form': form})
 
-#Vistas cursos, se incluye formulario de busqueda.
+
+#Vistas cursos:
 
 def Cursos(req):
     return render(req, 'Curso.html', {})
 
+#----Vistas busqueda de cursos:
 
 def Buscacursos(request):
     if request.method == 'POST':
@@ -66,11 +127,12 @@ def Buscacursos(request):
     
     return render(request, 'Buscacurso.html', {'form': form})
 
-#Views sobre el sector "estudiantes", se incluyen formularios de registro y busqueda. 
+#----Vistas Estudiantes:
 
 def Estudiantes(req):
     return render(req, 'Estudiante.html', {})
 
+#----Vistas estudiantes que se registran:
 
 def Registrate(request):
     if request.method == 'POST':
@@ -82,6 +144,9 @@ def Registrate(request):
         form = Estudianteformulario()
 
     return render(request, 'Registrate.html', {'form': form})
+
+
+#----Vistas estudiantes, formulario de busqueda:
 
 def Estudiantesnuevos(request):
    form = EstudianteSearchForm(request.GET or None)
@@ -102,11 +167,11 @@ def Estudiantesnuevos(request):
    
    return render(request, 'Estudiantesnuevos.html', {'form': form, 'estudiantes': estudiantes})
 
-#View de las casas
+#----Vistas CASAS Magicas:
 def Casa(req):
     return render(req, 'Casa.html', {})
 
-#View del sector contactenos
+#----Vistas Contactenos:
 
 def Contacto(request):
     if request.method == 'POST':

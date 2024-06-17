@@ -1,0 +1,27 @@
+{% extends 'Base.html' %}
+
+{% block contenidobipolar %}
+    <div class="container">
+        <h2>Búsqueda de Profesores postulados</h2>
+        <form action="{% url 'listapostulados' %}" method="GET">
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre:</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre del profesor">
+            </div>
+            <div class="mb-3">
+                <label for="apellido" class="form-label">Apellido:</label>
+                <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingrese el apellido del profesor">
+            </div>
+            <div class="mb-3">
+                <label for="profesion" class="form-label">Profesión:</label>
+                <input type="text" class="form-control" id="profesion" name="profesion" placeholder="Ingrese la profesión del profesor">
+            </div>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+            <br>
+        </form>
+         <br>
+    </div>
+
+</body>
+</html>
+{% endblock contenidobipolar %}
