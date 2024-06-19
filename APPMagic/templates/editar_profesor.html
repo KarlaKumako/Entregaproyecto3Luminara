@@ -1,0 +1,33 @@
+{% extends 'Base.html' %}
+
+{% block contenidobipolar %}
+
+<!-- ======= Editar postulación ======= -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'path/to/bootstrap.css' %}" rel="stylesheet">
+    <title>Editar Profesor</title>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2>Formulario de modificación sobre postulantes</h2>
+    {% if message %}
+        <div class="alert alert-danger">{{ message }}</div>
+    {% endif %}
+    <form action="{% url 'editar_profesor' id %}" method="post">
+        {% csrf_token %}
+        {{ formularioprofesor.as_p }}
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+    </form>
+</div>
+
+<script src="{% static 'path/to/bootstrap.js' %}"></script>
+</body>
+</html>
+{% endblock contenidobipolar %}

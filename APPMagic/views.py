@@ -1,5 +1,6 @@
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
 from .models import Profesor, Curso, Estudiante, Casa, Grupos
 from .forms import Estudianteformulario,Contactenosformulario,ProfesorForm,BusquedaProfesorForm,EstudianteSearchForm,CursoSearchForm
 
@@ -16,21 +17,23 @@ def Profesores(req):
 
 # #----Vistas profesores postulantes:
 
-# def Postulantes(req):    
-#     return render(req, 'Postulantes.html',{})
+def Postulantes(req):    
+     return render(req, 'Postulantes.html',{})
 
+def mensajepostulado(req):    
+     return render(req, 'mensajepostulado.html',{})
 
 # #----Vista formulario postulantes:
 
-# def Postulate(request):    
-#     if request.method == 'POST':
-#         formularioprofesor = ProfesorForm(request.POST)
-#         if formularioprofesor.is_valid():
-#             formularioprofesor.save()
-#             return redirect('Postulantes')  # Redirige a una página de éxito
-#     else:
-#         formularioprofesor = ProfesorForm()
-#     return render(request, 'Busquedapostulado.html', {'formularioprofesor': formularioprofesor})
+def Postulate(request):    
+    if request.method == 'POST':
+        formularioprofesor = ProfesorForm(request.POST)
+        if formularioprofesor.is_valid():
+            formularioprofesor.save()
+            return redirect('mensajepostulado')  # Redirige a una página de éxito
+    else:
+        formularioprofesor = ProfesorForm()
+    return render(request, 'Postulateformulario.html', {'formularioprofesor': formularioprofesor})
 
 # #----Vista busqueda de profesores postulantes:
 
@@ -105,7 +108,19 @@ def profesores_view(request):
         'formularioprofesor': formularioprofesor
     })
 
+#----Vista eliminar profesor:
 
+def eliminar_profesor(request, id):
+    profesor = get_object_or_404(Profesor, id=id)
+
+    if request.method == 'POST':
+        # Confirmación de la eliminación
+        profesor.delete()
+        messages.success(request, f'El profesor {profesor.nombre} {profesor.apellido} ha sido eliminado correctamente.')
+        return redirect('profesores_view')  # Redirige a la vista de lista de profesores
+
+    # Si el método no es POST, renderiza el template de confirmación de eliminación
+    return render(request, 'eliminar_profesor.html', {'profesor': profesor})
 
 
 #Vistas cursos:

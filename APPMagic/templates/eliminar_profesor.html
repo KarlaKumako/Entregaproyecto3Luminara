@@ -1,0 +1,35 @@
+{% extends 'Base.html' %}
+
+{% block contenidobipolar %}
+
+<!-- ======= Eliminar profesor======= -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar Eliminación</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>¿Estás seguro de eliminar al profesor {{ profesor.nombre }} {{ profesor.apellido }}?</h2>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Confirmar Eliminación</button>
+            <a href="{% url 'profesores_view' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+        
+        {% if messages %}
+        <div class="mt-4">
+            <ul class="messages">
+                {% for message in messages %}
+                <li class="alert alert-success">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
+
+{% endblock contenidobipolar %}

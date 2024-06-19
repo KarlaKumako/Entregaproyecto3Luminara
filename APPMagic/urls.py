@@ -3,6 +3,7 @@ from django.urls import path, include
 from APPMagic.views import *
 from . import views
 
+
 urlpatterns = [
     path('', home, name='Home'),
     
@@ -12,8 +13,12 @@ urlpatterns = [
     path('Estudiante/', Estudiantes, name='Estudiante'),
     path('Registrate/', Registrate, name='Registrate'),
     path('Estudiantesnuevos/', Estudiantesnuevos, name='Estudiantesnuevos'),
+
     path('Profesor/', Profesores, name='Profesor'),
-    path('Postulados/', profesores_view, name='Postulados'),
+    path('Postulados/', views.profesores_view, name='profesores_view'),
+    path('Postulate/', Postulate, name='Postulate'),
+    path('mensajepostulado/', mensajepostulado, name='mensajepostulado'),
+    path('eliminar_profesor/<int:id>', views.eliminar_profesor, name='eliminar_profesor'),
 
   
     

@@ -1,65 +1,65 @@
 {% extends 'Base.html' %}
 
 {% block contenidobipolar %}
-<div class="container mt-4">
-    <!-- Listado de Profesores -->
-    <div class="card">
-        <div class="card-body">
-            <h2 class="card-title mb-4">Lista de Profesores</h2>
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Email</th>
-                            <th>Profesión</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for profesor in mis_profesores %}
+    <div class="container mt-4">
+        <!-- Listado de Profesores -->
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title mb-4">Lista de Profesores</h2>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
                             <tr>
-                                <td>{{ profesor.nombre }}</td>
-                                <td>{{ profesor.apellido }}</td>
-                                <td>{{ profesor.email }}</td>
-                                <td>{{ profesor.profesion }}</td>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Email</th>
+                                <th>Profesión</th>
                             </tr>
-                        {% empty %}
-                            <tr>
-                                <td colspan="3">No hay profesores registrados.</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {% for profesor in mis_profesores %}
+                                <tr>
+                                    <td>{{ profesor.nombre }}</td>
+                                    <td>{{ profesor.apellido }}</td>
+                                    <td>{{ profesor.email }}</td>
+                                    <td>{{ profesor.profesion }}</td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td colspan="3">No hay profesores registrados.</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-    <div class="card mt-4">
-    <div class="card-body">
-        <h2 class="card-title mb-4">Buscar Profesor</h2>
-        <form method="get" action="{% url 'Postulados' %}">
-            <div class="form-row">
-                <div class="form-group col-md-3">
-                    <label for="id_nombre">Nombre:</label>
-                    <input type="text" id="id_nombre" name="nombre" class="form-control" value="{{ request.GET.nombre }}">
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="id_apellido">Apellido:</label>
-                    <input type="text" id="id_apellido" name="apellido" class="form-control" value="{{ request.GET.apellido }}">
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="id_profesion">Profesión:</label>
-                    <input type="text" id="id_profesion" name="profesion" class="form-control" value="{{ request.GET.profesion }}">
-                </div>
-               <br> 
-            <button type="submit" name="search" class="btn btn-primary">Buscar</button>
-        </form>
+        <div class="card mt-4">
+        <div class="card-body">
+            <h2 class="card-title mb-4">Buscar Profesor</h2>
+            <form method="get" action="{% url 'profesores_view' %}">
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="id_nombre">Nombre:</label>
+                        <input type="text" id="id_nombre" name="nombre" class="form-control" value="{{ request.GET.nombre }}">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="id_apellido">Apellido:</label>
+                        <input type="text" id="id_apellido" name="apellido" class="form-control" value="{{ request.GET.apellido }}">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="id_profesion">Profesión:</label>
+                        <input type="text" id="id_profesion" name="profesion" class="form-control" value="{{ request.GET.profesion }}">
+                    </div>
+                <br> 
+                <button type="submit" name="search" class="btn btn-primary">Buscar</button>
+            </form>
+        </div>
     </div>
-</div>
-<div class="container mt-4">
-    <!-- Resultados de Búsqueda -->
+    <div class="container mt-4">
+        <!-- Resultados de Búsqueda -->
     {% if search_results %}
         <div class="card mt-4">
             <div class="card-body">
@@ -72,19 +72,29 @@
                                 <th>Apellido</th>
                                 <th>Email</th>
                                 <th>Profesión</th>
+                                <th>Acciones</th> <!-- Columna para botones de acciones -->
                             </tr>
                         </thead>
                         <tbody>
                             {% for profesor in search_results %}
                                 <tr>
                                     <td>{{ profesor.nombre }}</td>
-                                    <td>{{ profesor.Apellido }}</td>
+                                    <td>{{ profesor.apellido }}</td>
                                     <td>{{ profesor.email }}</td>
                                     <td>{{ profesor.profesion }}</td>
+                                    <td>
+                                        <!-- Formulario para eliminar -->
+                                        <form method="get" action="{% url 'eliminar_profesor' profesor.id %}" style="display: inline;">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                                        </form>
+                                        {% comment %} <!-- Enlace para editar -->
+                                        <a href="{% url 'editar_profesor' profesor.id %}" class="btn btn-sm btn-primary">Editar</a> {% endcomment %}
+                                    </td>
                                 </tr>
                             {% empty %}
                                 <tr>
-                                    <td colspan="3">No se encontraron resultados.</td>
+                                    <td colspan="5">No se encontraron resultados.</td>
                                 </tr>
                             {% endfor %}
                         </tbody>
@@ -93,5 +103,7 @@
             </div>
         </div>
     {% endif %}
-</div>
+
+<br>
+
 {% endblock contenidobipolar%}
