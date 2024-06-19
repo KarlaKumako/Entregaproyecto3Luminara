@@ -14,6 +14,9 @@
                                 <th>Apellido</th>
                                 <th>Email</th>
                                 <th>Profesión</th>
+                                <th>Cursos</th>
+                                <th>Hechizo favorito</th>
+                                <th>Criatura mágica</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -23,6 +26,9 @@
                                     <td>{{ profesor.apellido }}</td>
                                     <td>{{ profesor.email }}</td>
                                     <td>{{ profesor.profesion }}</td>
+                                    <td>{{ profesor.Cursos }}</td>
+                                    <td>{{ profesor.hechizo_favorito }}</td>
+                                    <td>{{ profesor.criatura_magica }}</td>
                                 </tr>
                             {% empty %}
                                 <tr>
@@ -60,49 +66,73 @@
     </div>
     <div class="container mt-4">
         <!-- Resultados de Búsqueda -->
-    {% if search_results %}
-        <div class="card mt-4">
-            <div class="card-body">
-                <h2 class="card-title mb-4">Resultados de la Búsqueda</h2>
-                <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead>
+{% if search_results %}
+    <div class="card mt-4">
+        <div class="card-body">
+            <h2 class="card-title mb-4">Resultados de la Búsqueda</h2>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Email</th>
+                            <th>Profesión</th>
+                            <th>Acciones</th> <!-- Columna para botones de acciones -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for profesor in search_results %}
                             <tr>
-                                <th>Nombre</th>
-                                <th>Apellido</th>
-                                <th>Email</th>
-                                <th>Profesión</th>
-                                <th>Acciones</th> <!-- Columna para botones de acciones -->
+                                <td>{{ profesor.nombre }}</td>
+                                <td>{{ profesor.apellido }}</td>
+                                <td>{{ profesor.email }}</td>
+                                <td>{{ profesor.profesion }}</td>
+                                <td>
+                                    <!-- Formulario para eliminar -->
+                                    <form method="get" action="{% url 'eliminar_profesor' profesor.id %}" style="display: inline;">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                                    </form>
+                                    <!-- Enlace para editar -->
+                                    <a href="{% url 'editar_profesor' profesor.id %}" class="btn btn-sm btn-primary">Editar</a>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            {% for profesor in search_results %}
-                                <tr>
-                                    <td>{{ profesor.nombre }}</td>
-                                    <td>{{ profesor.apellido }}</td>
-                                    <td>{{ profesor.email }}</td>
-                                    <td>{{ profesor.profesion }}</td>
-                                    <td>
-                                        <!-- Formulario para eliminar -->
-                                        <form method="get" action="{% url 'eliminar_profesor' profesor.id %}" style="display: inline;">
-                                            {% csrf_token %}
-                                            <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
-                                        </form>
-                                        <!-- Enlace para editar -->
-                                        <a href="{% url 'editar_profesor' profesor.id %}" class="btn btn-sm btn-primary">Editar</a>
-                                    </td>
-                                </tr>
-                            {% empty %}
-                                <tr>
-                                    <td colspan="5">No se encontraron resultados.</td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
+                        {% empty %}
+                            <tr>
+                                <td colspan="5">No se encontraron resultados.</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
-    {% endif %}
+    </div>
+{% else %}
+    <div class="card mt-4">
+        <div class="card-body">
+            <h2 class="card-title mb-4">Resultados de la Búsqueda</h2>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Email</th>
+                            <th>Profesión</th>
+                            <th>Acciones</th> <!-- Columna para botones de acciones -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="5">No se encontraron resultados.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endif %}
 
 <br>
 

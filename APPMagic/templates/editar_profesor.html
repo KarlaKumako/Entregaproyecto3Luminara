@@ -18,9 +18,11 @@
             {% csrf_token %}
             {{ formularioprofesor.as_p }}
             <button type="submit" class="btn btn-primary">Actualizar</button>
+            <a href="javascript:history.back()" class="btn btn-secondary">Cancelar</a>
         </form>
     </div>
 </body>
+<br>
 </html>
 
 {% endblock contenidobipolar %}

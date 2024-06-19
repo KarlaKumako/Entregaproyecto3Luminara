@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .models import Profesor, Curso, Estudiante, Casa, Grupos
 from .forms import Estudianteformulario,Contactenosformulario,ProfesorForm,BusquedaProfesorForm,EstudianteSearchForm,CursoSearchForm
+from django.core.mail import send_mail
+from django.conf import settings
 
 #VIsta de la Home
 def home(req):
@@ -140,7 +142,7 @@ def editar_profesor(request, id):
 
 
 
-#Vistas cursos:
+#--------VISTAS CURSOS:
 
 def Cursos(req):
     return render(req, 'Curso.html', {})
@@ -205,12 +207,49 @@ def Casa(req):
 
 #----Vistas Contactenos:
 
+# def Contacto(request):
+#     if request.method == 'POST':
+#         formulariocontacto = Contactenosformulario(request.POST)
+#         if formulariocontacto.is_valid():
+#             formulariocontacto.save()
+#             return redirect('Home')  # Cambia 'registro_exitoso' al nombre de la vista adecuada
+#     else:
+#         formulariocontacto = Contactenosformulario()
+
+#     return render(request, 'Contacto.html', {'formulariocontacto': formulariocontacto})
+
 def Contacto(request):
     if request.method == 'POST':
         formulariocontacto = Contactenosformulario(request.POST)
         if formulariocontacto.is_valid():
             formulariocontacto.save()
-            return redirect('Home')  # Cambia 'registro_exitoso' al nombre de la vista adecuada
+
+            # Obtener los datos del formulario
+            nombre = formulariocontacto.cleaned_data['nombre']
+            email = formulariocontacto.cleaned_data['email']
+            asunto = formulariocontacto.cleaned_data['asunto']
+            mensaje = formulariocontacto.cleaned_data['mensaje']
+
+            # Preparar el contenido del correo
+            contenido_correo = f'''
+            Nombre: {nombre}
+            Correo Electrónico: {email}
+            Asunto: {asunto}
+
+            Mensaje:
+            {mensaje}
+            '''
+
+            # Enviar correo electrónico
+            send_mail(
+                f'Mensaje de contacto - {asunto}',
+                contenido_correo,
+                settings.EMAIL_HOST_USER,
+                [settings.EMAIL_HOST_USER],  # Envía el correo a tu dirección de correo electrónico
+            )
+
+            return redirect('Home')  # Redirigir a la página de inicio después de enviar el correo
+
     else:
         formulariocontacto = Contactenosformulario()
 
