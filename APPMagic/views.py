@@ -122,6 +122,23 @@ def eliminar_profesor(request, id):
     # Si el método no es POST, renderiza el template de confirmación de eliminación
     return render(request, 'eliminar_profesor.html', {'profesor': profesor})
 
+#----Vista modificación profesor:
+
+def editar_profesor(request, id):
+    profesor = get_object_or_404(Profesor, id=id)
+
+    if request.method == 'POST':
+        formularioprofesor = ProfesorForm(request.POST, instance=profesor)
+        if formularioprofesor.is_valid():
+            formularioprofesor.save()
+            return redirect('profesores_view')  # Redirige a la vista de lista de profesores después de editar
+    else:
+        formularioprofesor = ProfesorForm(instance=profesor)
+            
+    return render(request, 'editar_profesor.html', {'formularioprofesor': formularioprofesor, 'id': profesor.id})
+
+
+
 
 #Vistas cursos:
 

@@ -19,6 +19,7 @@ urlpatterns = [
     path('Postulate/', Postulate, name='Postulate'),
     path('mensajepostulado/', mensajepostulado, name='mensajepostulado'),
     path('eliminar_profesor/<int:id>', views.eliminar_profesor, name='eliminar_profesor'),
+    path('editar_profesor/<int:id>', views.editar_profesor, name='editar_profesor'),
 
   
     

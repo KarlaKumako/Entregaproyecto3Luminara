@@ -88,8 +88,8 @@
                                             {% csrf_token %}
                                             <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
                                         </form>
-                                        {% comment %} <!-- Enlace para editar -->
-                                        <a href="{% url 'editar_profesor' profesor.id %}" class="btn btn-sm btn-primary">Editar</a> {% endcomment %}
+                                        <!-- Enlace para editar -->
+                                        <a href="{% url 'editar_profesor' profesor.id %}" class="btn btn-sm btn-primary">Editar</a>
                                     </td>
                                 </tr>
                             {% empty %}
