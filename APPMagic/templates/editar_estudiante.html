@@ -1,0 +1,28 @@
+{% extends 'Base.html' %}
+
+{% block contenidobipolar %}
+
+<!-- ======= Editar estudiante ======= -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Estudiante</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Editar Estudiante</h2>
+        <form action="{% url 'editar_estudiante' id %}" method="post">
+            {% csrf_token %}
+            {{ formulario_estudiante.as_p }}
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+            <a href="javascript:history.back()" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</body>
+<br>
+</html>
+
+{% endblock contenidobipolar %}

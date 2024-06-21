@@ -111,3 +111,15 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Configuración del backend de correo electrónico
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# Configuración del servidor SMTP
+EMAIL_HOST = 'smtp.gmail.com'  # Servidor SMTP que estás utilizando
+EMAIL_PORT = 587  # Puerto del servidor SMTP (generalmente 587 para TLS)
+EMAIL_USE_TLS = True  # Usar TLS para encriptar la conexión
+EMAIL_HOST_USER = 'luminaracontactenos@gmail.com'  # Tu dirección de correo electrónico
+EMAIL_HOST_PASSWORD = ''  # Tu contraseña de correo electrónico
+
+#---- No se logra generar la configuración de conexión desde el gmail, no figura la opción correspondoente para generar la contraseña de la APP. 

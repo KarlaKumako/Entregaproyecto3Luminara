@@ -2,7 +2,7 @@
 
 {% block contenidobipolar %}
 
-<!-- ======= Eliminar profesor======= -->
+<!-- ======= Eliminar estudiante======= -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,11 +12,11 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h2>¿Estás seguro de eliminar al profesor {{ profesor.nombre }} {{ profesor.apellido }}?</h2>
+        <h2>¿Estás seguro de eliminar al estudiante {{ estudiante.nombre }} {{ estudiante.apellido }}?</h2>
         <form method="post">
             {% csrf_token %}
             <button type="submit" class="btn btn-danger">Confirmar Eliminación</button>
-            <a href="{% url 'profesores_view' %}" class="btn btn-secondary">Cancelar</a>
+            <a href="{% url 'estudiantes_view' %}" class="btn btn-secondary">Cancelar</a>
         </form>
         
         {% if messages %}

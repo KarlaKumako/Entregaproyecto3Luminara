@@ -1,114 +1,111 @@
-{%extends 'Base.html'%}
+{% extends 'Base.html' %}
 
-{%block contenidobipolar%}
- <!-- ======= Portfolio Section ======= -->
- {% load static %}
-    <section id="portfolio" class="portfolio">
-      <div class="container">
+{% block contenidobipolar %}
+<!-- ======= Portfolio Section ======= -->
+{% load static %}
+<section id="portfolio" class="portfolio">
+  <div class="container">
 
-        <div class="section-title">
-          <h2>Explora el Entorno Mágico de Nuestra Escuela</h2>
-          <p >En Luminara, nuestros estudiantes no solo aprenden magia, sino que también se sumergen en un entorno enriquecedor y estimulante que fomenta el crecimiento personal y mágico. Situada en el corazón de un bosque ancestral, nuestra escuela ofrece un ambiente único donde la naturaleza y la magia se entrelazan para crear una experiencia educativa incomparable.</p>
-          <br>
-          <h1 style="font-size: 1.5em; text-align: left;">Comunidad Mágica y Apoyo Mutuo</h1>
-         <p style="text-align: left;">Nuestra escuela no es solo un lugar de estudio, sino una comunidad unida de magos y brujas jóvenes que comparten una pasión por el aprendizaje mágico. Los estudiantes encuentran amistades duraderas, colaboran en proyectos mágicos y se apoyan mutuamente en su camino hacia la maestría mágica.</p>
-          <br>
-          <h1 style="font-size: 1.5em; text-align: left;">Eventos y Celebraciones Mágicas</h1>
-         <p style="text-align: left;">A lo largo del año escolar, organizamos eventos especiales y celebraciones mágicas que enriquecen la experiencia de nuestros estudiantes. Desde festivales de equinoccio hasta noches estrelladas de observación astronómica, cada evento está diseñado para celebrar la magia en todas sus formas y fortalecer el vínculo entre los estudiantes, el personal y la comunidad mágica más amplia.</p>
-         <br>
-          <h1 style="font-size: 1.5em; text-align: left;">Infraestructura Moderna en Armonía con la Naturaleza</h1>
-         <p style="text-align: left;">Nuestra escuela está diseñada con tecnología mágica avanzada que complementa y respeta el entorno natural circundante. Las aulas están equipadas con herramientas mágicas modernas, mientras que los edificios están construidos con materiales sostenibles y encantados para minimizar el impacto ambiental y promover un aprendizaje responsable.</p>
-         <br>
-          <h1 style="font-size: 1.5em; text-align: left;">Compromiso con la Diversidad y la Inclusión</h1>
-         <p style="text-align: left;">En Luminara, celebramos la diversidad en todas sus formas. Fomentamos un ambiente inclusivo donde cada estudiante se siente valorado y respetado por su singularidad y contribución a la comunidad mágica. Promovemos el respeto mutuo y la colaboración entre estudiantes de diferentes orígenes y tradiciones mágicas.</p>
-          
-           
-        </div>
-       
-        <div class="row">
-          <div class="col-lg-12 d-flex justify-content-center">
-            <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">All</li>
-            </ul>
-          </div>
-        </div>
+    <style>
+      .portfolio-image {
+          width: 100%;
+          height: 300px; /* Ajusta la altura según tus necesidades */
+          object-fit: cover;
+      }
+    </style>
 
-        <div class="row portfolio-container">
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="{% static 'assets/img/portfolio/portfolio-1.jpg' %}" class="img-fluid" alt="">
-              <div class="portfolio-info">                         
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="{% static 'assets/img/portfolio/portfolio-2.jpg' %}" class="img-fluid" alt="">
-              <div class="portfolio-info">                
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="{% static 'assets/img/portfolio/portfolio-3.jpg' %}" class="img-fluid" alt="">
-              <div class="portfolio-info">                
-              </div>
-            </div>
-          </div>
-          
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="{% static 'assets/img/portfolio/portfolio-4.jpg' %}"  class="img-fluid" alt="">
-              <div class="portfolio-info">                
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="{% static 'assets/img/portfolio/portfolio-5.jpg' %}" class="img-fluid" alt="">
-              <div class="portfolio-info">                
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="{% static 'assets/img/portfolio/portfolio-6.jpg' %}" class="img-fluid" alt="">
-              <div class="portfolio-info">               
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="{% static 'assets/img/portfolio/portfolio-7.jpg' %}" class="img-fluid" alt="">
-              <div class="portfolio-info">                
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="{% static 'assets/img/portfolio/portfolio-8.jpg' %}" class="img-fluid" alt="">
-              <div class="portfolio-info">                
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="{% static 'assets/img/portfolio/portfolio-9.jpg' %}"  class="img-fluid" alt="">
-              <div class="portfolio-info">                
-              </div>
-            </div>
-          </div>
-
-        </div>
-
+    <div class="section-title">
+      <h2>Explora el Entorno Mágico de Nuestra Escuela</h2>
+      <p>En Luminara, nuestros estudiantes no solo aprenden magia, sino que también se sumergen en un entorno enriquecedor y estimulante que fomenta el crecimiento personal y mágico. Situada en el corazón de un bosque ancestral, nuestra escuela ofrece un ambiente único donde la naturaleza y la magia se entrelazan para crear una experiencia educativa incomparable.</p>
+      <br>
+      <h1 style="font-size: 1.5em; text-align: left;">Comunidad Mágica y Apoyo Mutuo</h1>
+      <p style="text-align: left;">Nuestra escuela no es solo un lugar de estudio, sino una comunidad unida de magos y brujas jóvenes que comparten una pasión por el aprendizaje mágico. Los estudiantes encuentran amistades duraderas, colaboran en proyectos mágicos y se apoyan mutuamente en su camino hacia la maestría mágica.</p>
+      <br>
+      <h1 style="font-size: 1.5em; text-align: left;">Eventos y Celebraciones Mágicas</h1>
+      <p style="text-align: left;">A lo largo del año escolar, organizamos eventos especiales y celebraciones mágicas que enriquecen la experiencia de nuestros estudiantes. Desde festivales de equinoccio hasta noches estrelladas de observación astronómica, cada evento está diseñado para celebrar la magia en todas sus formas y fortalecer el vínculo entre los estudiantes, el personal y la comunidad mágica más amplia.</p>
+      <br>
+      <h1 style="font-size: 1.5em; text-align: left;">Infraestructura Moderna en Armonía con la Naturaleza</h1>
+      <p style="text-align: left;">Nuestra escuela está diseñada con tecnología mágica avanzada que complementa y respeta el entorno natural circundante. Las aulas están equipadas con herramientas mágicas modernas, mientras que los edificios están construidos con materiales sostenibles y encantados para minimizar el impacto ambiental y promover un aprendizaje responsable.</p>
+      <br>
+      <h1 style="font-size: 1.5em; text-align: left;">Compromiso con la Diversidad y la Inclusión</h1>
+      <p style="text-align: left;">En Luminara, celebramos la diversidad en todas sus formas. Fomentamos un ambiente inclusivo donde cada estudiante se siente valorado y respetado por su singularidad y contribución a la comunidad mágica. Promovemos el respeto mutuo y la colaboración entre estudiantes de diferentes orígenes y tradiciones mágicas.</p>
+    </div>
+    
+    <div class="row">
+      <div class="col-lg-12 d-flex justify-content-center">
+        <ul id="portfolio-flters">
+          <li data-filter="*" class="filter-active">All</li>
+        </ul>
       </div>
-    </section><!-- End Portfolio Section -->
-{%endblock contenidobipolar%}
+    </div>
+
+    <div class="row portfolio-container">
+
+      <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+        <div class="portfolio-wrap">
+          <img src="{% static 'assets/img/portfolio/portfolio-1.jpg' %}" class="img-fluid portfolio-image" alt="">
+          <div class="portfolio-info"></div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+        <div class="portfolio-wrap">
+          <img src="{% static 'assets/img/portfolio/portfolio-2.jpg' %}" class="img-fluid portfolio-image" alt="">
+          <div class="portfolio-info"></div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+        <div class="portfolio-wrap">
+          <img src="{% static 'assets/img/portfolio/portfolio-3.jpg' %}" class="img-fluid portfolio-image" alt="">
+          <div class="portfolio-info"></div>
+        </div>
+      </div>
+      
+      <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+        <div class="portfolio-wrap">
+          <img src="{% static 'assets/img/portfolio/portfolio-4.jpg' %}" class="img-fluid portfolio-image" alt="">
+          <div class="portfolio-info"></div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+        <div class="portfolio-wrap">
+          <img src="{% static 'assets/img/portfolio/portfolio-5.jpg' %}" class="img-fluid portfolio-image" alt="">
+          <div class="portfolio-info"></div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+        <div class="portfolio-wrap">
+          <img src="{% static 'assets/img/portfolio/portfolio-6.jpg' %}" class="img-fluid portfolio-image" alt="">
+          <div class="portfolio-info"></div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+        <div class="portfolio-wrap">
+          <img src="{% static 'assets/img/portfolio/portfolio-7.jpg' %}" class="img-fluid portfolio-image" alt="">
+          <div class="portfolio-info"></div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+        <div class="portfolio-wrap">
+          <img src="{% static 'assets/img/portfolio/portfolio-8.jpg' %}" class="img-fluid portfolio-image" alt="">
+          <div class="portfolio-info"></div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+        <div class="portfolio-wrap">
+          <img src="{% static 'assets/img/portfolio/portfolio-9.jpg' %}" class="img-fluid portfolio-image" alt="">
+          <div class="portfolio-info"></div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section><!-- End Portfolio Section -->
+{% endblock contenidobipolar %}

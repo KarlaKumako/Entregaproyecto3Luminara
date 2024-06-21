@@ -14,38 +14,7 @@
                 
                 
             </div>
-
-    <body>
-    <div class="container">
-        <h2>Resultados de Búsqueda</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Email</th>
-                    <th>Casa</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for estudiante in estudiantes %}
-                <tr>
-                    <td>{{ estudiante.nombre }}</td>
-                    <td>{{ estudiante.apellido }}</td>
-                    <td>{{ estudiante.email }}</td>
-                    <td>{{ estudiante.casa.nombre }}</td>
-                </tr>
-                {% empty %}
-                <tr>
-                    <td colspan="4">No se encontraron resultados.</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-
-        </table>
-    </div>
-
-    
 </body>
+<br>
 
 {%endblock contenidobipolar%}

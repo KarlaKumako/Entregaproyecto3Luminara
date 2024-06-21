@@ -1,41 +1,138 @@
-{%extends 'Base.html'%}
+{% extends 'Base.html' %}
 
-{%block contenidobipolar%}
-<!-- ======= Nuevos estudiantes ======= -->
-
-<body>
-    <section id=" Nuevos estudiantes" class="contact py-5">
-        <div class="container">
-            <div class="section-title text-center">
-                <h2>Bienvenidos Nuevos Estudiantes</h2><br>
-                <p class="lead">¡Gracias por registrarte para unirte a nosotros en la Escuela Mágica Luminara!</p><br>
-                <p style="text-align: left; margin-bottom: 20px;">En Luminara, cada nuevo estudiante trae consigo una chispa única de magia y potencial. Esta página está dedicada a dar la bienvenida a nuestros recientes miembros de la comunidad mágica, quienes iniciarán su viaje lleno de aprendizaje, descubrimiento y aventuras mágicas. Aquí encontrarás un listado de los estudiantes que se han unido a nosotros este año, representando el futuro brillante de la magia.</p><br>
-                <p style="text-align: left; margin-bottom: 20px;">Nuestros estudiantes ingresantes son más que simplemente nombres en un registro; son jóvenes magos y brujas que transformarán el mundo mágico con su creatividad, curiosidad y pasión. Te invitamos a conocerlos y celebrar su llegada, mientras ellos dan sus primeros pasos hacia la maestría en las artes mágicas.</p><br>
-                
-                
+{% block contenidobipolar %}
+    <div class="container mt-4">
+        <!-- Listado de Estudiantes -->
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title mb-4">Lista de Estudiantes</h2>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Email</th>
+                                <th>Casa</th>
+                                <th>Habilidad Mágica</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for estudiante in mis_estudiantes %}
+                                <tr>
+                                    <td>{{ estudiante.nombre }}</td>
+                                    <td>{{ estudiante.apellido }}</td>
+                                    <td>{{ estudiante.email }}</td>
+                                    <td>{{ estudiante.casa.nombre }}</td>
+                                    <td>{{ estudiante.habilidad_magica }}</td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td colspan="5">No hay estudiantes registrados.</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-
-            <body>
-    <div class="container">
-        <h2>Búsqueda de Estudiantes</h2>
-        <form action="{% url 'Estudiantesnuevos' %}" method="GET">
-            <div class="mb-3">
-                <label for="nombre" class="form-label">Nombre:</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre del estudiante">
-            </div>
-            <div class="mb-3">
-                <label for="apellido" class="form-label">Apellido:</label>
-                <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingrese el apellido del estudiante">
-            </div>
-            <div class="mb-3">
-                <label for="casa" class="form-label">Casa:</label>
-                <input type="text" class="form-control" id="casa" name="casa" placeholder="Ingrese la casa del estudiante">
-            </div>
-            <button type="submit" class="btn btn-primary">Buscar</button>
-        </form>
+        </div>
     </div>
 
-</body>
-<br>
+    <div class="card mt-4">
+        <div class="card-body">
+            <h2 class="card-title mb-4">Buscar Estudiante</h2>
+            <form method="get" action="{% url 'estudiantes_view' %}">
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="id_nombre">Nombre:</label>
+                        <input type="text" id="id_nombre" name="nombre" class="form-control" value="{{ request.GET.nombre }}">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="id_apellido">Apellido:</label>
+                        <input type="text" id="id_apellido" name="apellido" class="form-control" value="{{ request.GET.apellido }}">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="id_casa">Casa:</label>
+                        <input type="text" id="id_casa" name="casa" class="form-control" value="{{ request.GET.casa }}">
+                    </div>
+                </div>
+                <button type="submit" name="search" class="btn btn-primary mt-3">Buscar</button>
+            </form>
+        </div>
+    </div>
 
-{%endblock contenidobipolar%}
+    <div class="container mt-4">
+        <!-- Resultados de Búsqueda -->
+        {% if search_results %}
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h2 class="card-title mb-4">Resultados de la Búsqueda</h2>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Email</th>
+                                    <th>Casa</th>
+                                    <th>Habilidad Mágica</th>
+                                    <th>Acciones</th> <!-- Columna para botones de acciones -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for estudiante in search_results %}
+                                    <tr>
+                                        <td>{{ estudiante.nombre }}</td>
+                                        <td>{{ estudiante.apellido }}</td>
+                                        <td>{{ estudiante.email }}</td>
+                                        <td>{{ estudiante.casa.nombre }}</td>
+                                        <td>{{ estudiante.habilidad_magica }}</td>
+                                        <td>
+                                            <!-- Formulario para eliminar -->
+                                            <form method="get" action="{% url 'eliminar_estudiante' estudiante.id %}" style="display: inline;">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                                            </form>
+                                            <!-- Enlace para editar -->
+                                            <a href="{% url 'editar_estudiante' estudiante.id %}" class="btn btn-sm btn-primary">Editar</a>
+                                        </td>
+                                    </tr>
+                                {% empty %}
+                                    <tr>
+                                        <td colspan="6">No se encontraron resultados.</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h2 class="card-title mb-4">Resultados de la Búsqueda</h2>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Email</th>
+                                    <th>Casa</th>
+                                    <th>Habilidad Mágica</th>
+                                    <th>Acciones</th> <!-- Columna para botones de acciones -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="6">No se encontraron resultados.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock contenidobipolar %}

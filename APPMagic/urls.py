@@ -12,7 +12,10 @@ urlpatterns = [
 
     path('Estudiante/', Estudiantes, name='Estudiante'),
     path('Registrate/', Registrate, name='Registrate'),
-    path('Estudiantesnuevos/', Estudiantesnuevos, name='Estudiantesnuevos'),
+    path('Estudiantesnuevos/', views.estudiantes_view, name='estudiantes_view'),
+    path('mensajeestudiantesnuevos/', views.mensajeestudiantesnuevos, name='mensajeestudiantesnuevos'),
+    path('editar_estudiante/<int:id>/', views.editar_estudiante, name='editar_estudiante'),
+    path('estudiantes_eliminar/<int:id>/', views.eliminar_estudiante, name='eliminar_estudiante'),
 
     path('Profesor/', Profesores, name='Profesor'),
     path('Postulados/', views.profesores_view, name='profesores_view'),
@@ -25,8 +28,9 @@ urlpatterns = [
     
     path('Casa/', Casa, name='Casa'),
     
-    path('Estudiantesnuevos/', Estudiantesnuevos, name='Estudiantesnuevos'),
+    
     path('Contacto/', Contacto, name='Contacto'),
+    path('mensajecontacto/', mensajecontacto, name='mensajecontacto'),
      
 ]
 
