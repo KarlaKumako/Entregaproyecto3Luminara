@@ -1,0 +1,14 @@
+{% extends 'Base.html' %}
+
+{% block contenidobipolar%}
+<div class="container mt-4">
+    <h2>Confirmación de Eliminación</h2>
+    <p>¿Estás seguro de que deseas eliminar el curso "{{ curso.Curso }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a href="{% url 'grupos_y_cursos_view' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+    <br>
+</div>
+{% endblock contenidobipolar%}

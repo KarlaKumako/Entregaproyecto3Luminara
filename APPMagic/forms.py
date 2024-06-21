@@ -1,5 +1,5 @@
 from django import forms
-from .models import Estudiante, Contacto, Profesor, Curso, Grupos
+from .models import *
 
 #class Estudianteformulario(forms.ModelForm):
     #class Meta:
@@ -65,5 +65,28 @@ class EstudianteSearchForm(forms.Form):
     #query = forms.CharField(label='Buscar cursos', required=False)
     #grupo = forms.ModelChoiceField(queryset=Grupos.objects.all(), required=False)
 
-class CursoSearchForm(forms.Form):
-    curso = forms.CharField(label='Buscar curso', max_length=100)
+# class CursoSearchForm(forms.Form):
+#     curso = forms.CharField(label='Buscar curso', max_length=100)
+
+class BusquedaForm(forms.Form):
+    nombre = forms.CharField(required=False, label='Nombre')
+    curso = forms.CharField(required=False, label='Curso')
+
+class GrupoForm(forms.ModelForm):
+    class Meta:
+        model = Grupos
+        fields = ['nombre', 'descripcion']
+        widgets = {
+            'nombre': forms.Select(choices=Grupos.Grupos_CHOICES, attrs={'class': 'form-control'}),
+            'descripcion': forms.Textarea(attrs={'class': 'form-control', 'rows': 5}),
+        }
+
+class CursoForm(forms.ModelForm):
+    class Meta:
+        model = Curso
+        fields = ['Curso', 'Grupos', 'descripcion']
+        widgets = {
+            'Curso': forms.TextInput(attrs={'class': 'form-control'}),
+            'Grupos': forms.SelectMultiple(attrs={'class': 'form-select'}),
+            'descripcion': forms.Textarea(attrs={'class': 'form-control', 'rows': 5}),
+        }

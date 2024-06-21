@@ -4,7 +4,7 @@ from django.contrib import messages
 
 from Proyecto3Luminara.settings import EMAIL_HOST_USER
 from .models import Profesor, Curso, Estudiante, Casa, Grupos
-from .forms import Estudianteformulario,Contactenosformulario,ProfesorForm,BusquedaProfesorForm,EstudianteSearchForm,CursoSearchForm
+from .forms import *
 from django.core.mail import send_mail
 from django.conf import settings
 from django.core.mail import send_mail
@@ -142,21 +142,105 @@ def editar_profesor(request, id):
 def Cursos(req):
     return render(req, 'Curso.html', {})
 
-#----Vistas busqueda de cursos:
+def mensajecursocreado(req):
+    return render(req, 'mensajecursocreado.html', {})
 
-def Buscacursos(request):
+def crear_curso(request):
     if request.method == 'POST':
-        form = CursoSearchForm(request.POST)
+        form = CursoForm(request.POST)
         if form.is_valid():
-            curso_buscado = form.cleaned_data['curso']
-            cursos = Curso.objects.filter(Curso__icontains=curso_buscado)
-            return render(request, 'resultadocurso.html', {'cursos': cursos, 'curso_buscado': curso_buscado})
+            form.save()
+            return redirect('mensajecursocreado')  # Redirige a una página de éxito o donde desees
     else:
-        form = CursoSearchForm()
+        form = CursoForm()
     
-    return render(request, 'Buscacurso.html', {'form': form})
+    return render(request, 'crear_curso.html', {'form': form})
+
+#----- VISTA COMPARTIDA DE GRUPOS Y CURSOS
+
+def grupos_y_cursos_view(request):
+    # Listar todos los grupos y cursos
+    grupos = Grupos.objects.all()
+    cursos = Curso.objects.all()
+
+    return render(request, 'Readmorecursos.html', {
+        'grupos': grupos,
+        'cursos': cursos,
+    })
+
+def eliminar_curso(request, id):
+    curso = get_object_or_404(Curso, id=id)
+
+    if request.method == 'POST':
+        # Confirmación de la eliminación
+        curso.delete()
+        messages.success(request, f'El curso {curso.Curso} ha sido eliminado correctamente.')
+        return redirect('grupos_y_cursos_view')  # Redirige a la vista de lista de cursos
+
+    # Si el método no es POST, renderiza el template de confirmación de eliminación
+    return render(request, 'eliminar_curso.html', {'curso': curso})
+
+def editar_curso(request, id):
+    curso = get_object_or_404(Curso, id=id)
+
+    if request.method == 'POST':
+        form = CursoForm(request.POST, instance=curso)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'El curso {curso.Curso} ha sido actualizado correctamente.')
+            return redirect('grupos_y_cursos_view')  # Redirige a la vista de lista de cursos después de editar
+    else:
+        form = CursoForm(instance=curso)
+            
+    return render(request, 'editar_curso.html', {'form': form, 'id': curso.id})
+
+#------Vistas grupos: 
+
+#-------------CREACION DE exito:
+
+def mensajegrupocreado(req):
+    return render(req, 'mensajegrupocreado.html', {})
+
+#-------------CREACION DE GRUPOS:
+
+def crear_grupo(request):
+    if request.method == 'POST':
+        form = GrupoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('mensajegrupocreado')  # Redirige a una página de éxito o donde desees
+    else:
+        form = GrupoForm()
+    
+    return render(request, 'crear_grupo.html', {'form': form})
+
+#-------------ELIMINACIÓN  DE GRUPOS:
+
+def eliminar_grupo(request, id):
+
+    grupo = get_object_or_404(Grupos, id=id)
+    if request.method == 'POST':
+        grupo.delete()        
+        return redirect('grupos_y_cursos_view')  # Redirige a la vista de listado de grupos
+
+    return render(request, 'eliminar_grupo.html', {'grupo': grupo})
 
 
+#-------------EDICIÓN DE GRUPOS:
+
+def editar_grupo(request, id):
+    grupo = get_object_or_404(Grupos, id=id)
+
+    if request.method == 'POST':
+        form = GrupoForm(request.POST, instance=grupo)
+        if form.is_valid():
+            form.save()
+            # Añadir mensaje de éxito si lo deseas
+            return redirect('grupos_y_cursos_view')  # Redirige a la vista de listado de grupos
+    else:
+        form = GrupoForm(instance=grupo)
+    
+    return render(request, 'editar_grupo.html', {'form': form, 'grupo': grupo})
 
 
 #----Vistas Estudiantes:
@@ -252,7 +336,7 @@ def editar_estudiante(request, id):
 #-------Vista de eliminación estudiantes. 
 
 def eliminar_estudiante(request, id):
-    
+
     estudiante = get_object_or_404(Estudiante, id=id)
     if request.method == 'POST':
         estudiante.delete()

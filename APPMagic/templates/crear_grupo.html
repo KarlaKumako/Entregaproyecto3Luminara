@@ -1,0 +1,13 @@
+{% extends 'Base.html' %}
+
+{% block contenidobipolar %}
+<div class="container mt-4">
+    <h2>Crear Nuevo Grupo</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+    <br>
+</div>
+{% endblock contenidobipolar %}

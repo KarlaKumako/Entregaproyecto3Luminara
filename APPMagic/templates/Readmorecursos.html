@@ -1,0 +1,118 @@
+{% extends 'Base.html' %}
+
+{% block contenidobipolar %}
+
+<body>
+    <section id="Postulantes" class="contact py-5">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>Nuestros Grupos</h2><br>                
+                <p style="text-align: left; margin-bottom: 20px;">En nuestra prestigiosa escuela de magia, los estudiantes son agrupados en diferentes cohortes a lo largo de su educación, cada una marcando un hito en su viaje hacia el dominio de las artes mágicas. Estos grupos no solo representan el avance académico, sino también el desarrollo personal y mágico de cada estudiante. Desde los primeros pasos como "Aprendices de las Estrellas", llenos de asombro y curiosidad, hasta convertirse en "Maestros de la Magia" con un profundo conocimiento y habilidades excepcionales, cada año ofrece una experiencia única de aprendizaje y descubrimiento en el vasto mundo mágico.</p>                
+            </div>
+        </div>
+    </section>
+
+    <div class="container mt-4">
+        <!-- Listado de Grupos -->
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title mb-4">Lista de Grupos</h2>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for grupo in grupos %}
+                            <tr>
+                                <td>{{ grupo.get_nombre_display }}</td>
+                                <td>{{ grupo.descripcion }}</td>
+                                <td>
+                                    <!-- Formulario para eliminar -->
+                                    <form method="get" action="{% url 'eliminar_grupo' grupo.id %}" style="display: inline;">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                                    </form>
+                                    <!-- Enlace para editar -->
+                                    <a href="{% url 'editar_grupo' grupo.id %}" class="btn btn-sm btn-primary">Editar</a>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="3">No hay grupos registrados.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center">
+                    <a href="{% url 'crear_grupo' %}" class="btn btn-success">Crear Nuevo Grupo</a>
+                </div>
+            </div>
+        </div>
+
+        <section id="Cursos" class="contact py-5">
+            <div class="container">
+                <div class="section-title text-center">
+                    <h2>Nuestros Cursos</h2><br>                
+                    <p style="text-align: left; margin-bottom: 20px;">En nuestra escuela de magia, los cursos están diseñados para guiar a los estudiantes a través de un viaje educativo que abarca desde los fundamentos hasta las técnicas avanzadas de diversas disciplinas mágicas. Cada curso está adaptado específicamente para aprovechar al máximo las habilidades y conocimientos adquiridos en cada etapa de su desarrollo mágico. Desde los primeros pasos en "Introducción a la Magia" hasta la maestría en "Pociones y Alquimia Maestras" y "Transformaciones y Metamorfosis III", los estudiantes exploran y dominan áreas especializadas bajo la guía de nuestros expertos docentes. Cada curso ofrece una combinación única de teoría y práctica, preparando a nuestros estudiantes para enfrentar desafíos mágicos con confianza y habilidad.</p>                
+                </div>
+            </div>
+        </section>
+
+        <!-- Listado de Cursos -->
+        <div class="card mt-4">
+            <div class="card-body">
+                <h2 class="card-title mb-4">Lista de Cursos</h2>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Curso</th>
+                                <th>Grupos</th>
+                                <th>Descripción</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for curso in cursos %}
+                            <tr>
+                                <td>{{ curso.Curso }}</td>
+                                <td>
+                                    {% for grupo in curso.Grupos.all %}
+                                    {{ grupo.get_nombre_display }}
+                                    {% if not forloop.last %}, {% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td>{{ curso.descripcion }}</td>                                
+                                <td>
+                                    <!-- Formulario para eliminar -->
+                                    <form method="get" action="{% url 'eliminar_curso' curso.id %}" style="display: inline;">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                                    </form>
+                                    
+                                    <!-- Enlace para editar -->
+                                    <a href="{% url 'editar_curso' curso.id %}" class="btn btn-sm btn-primary">Editar</a>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="4">No hay cursos registrados.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center">
+                    <a href="{% url 'crear_curso' %}" class="btn btn-success">Crear Nuevo Curso</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock contenidobipolar %}
