@@ -1,0 +1,24 @@
+
+{% extends 'Base.html' %}
+
+{% block contenidobipolar %}
+
+<!-- ======= Editar perfil ======= -->
+
+<div class="container mt-5">
+    <h2>Editar Perfil</h2>
+    {% if user.is_authenticated %}
+    <form action="{% url 'editar_perfil' %}" method="post">{% csrf_token %}         
+        {{ form.as_p }}  
+        <br>
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+        <a href="javascript:history.back()" class="btn btn-secondary">Cancelar</a>
+    </form>    
+    {% else %}
+    <p>Necesitas estar logueado para editar tu perfil.</p>
+    <p><a href="{% url 'login' %}" class="btn btn-primary">Iniciar sesión</a></p>
+    {% endif %}
+    
+</div>
+<br>
+{% endblock contenidobipolar %}

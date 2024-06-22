@@ -35,13 +35,14 @@ urlpatterns = [
     path('eliminar_profesor/<int:id>', views.eliminar_profesor, name='eliminar_profesor'),
     path('editar_profesor/<int:id>', views.editar_profesor, name='editar_profesor'),
 
-  
+     path('staffmember/', views.staffmember, name='staffmember'),
     
     path('Casa/', Casa, name='Casa'),
     
     
     path('Contacto/', Contacto, name='Contacto'),
     path('mensajecontacto/', mensajecontacto, name='mensajecontacto'),
+
      
 ]
 

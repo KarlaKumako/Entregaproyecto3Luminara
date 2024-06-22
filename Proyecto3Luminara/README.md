@@ -37,5 +37,4 @@ Observaciones:
 1. Para que sea visible el admin y se pueda visualizar en totalidad:
    User: ProyectoLuminara
    Contraseña: 12345Luminara
-
 Version: 2.5

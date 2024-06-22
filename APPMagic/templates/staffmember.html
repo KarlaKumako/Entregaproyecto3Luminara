@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso Restringido</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .btn {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Acceso Restringido</h1>
+        <p>¡Hola! Parece que has llegado a una zona restringida de nuestra escuela de magia.</p>
+        <p>Esta área está reservada exclusivamente para el personal autorizado. Si necesitas ayuda o tienes alguna pregunta, por favor contacta con nosotros.</p>
+        <p>¡Gracias por tu comprensión!</p>
+        <a href="{% url 'login' %}" class="btn">Iniciar sesión como staff</a>
+    </div>
+</body>
+</html>

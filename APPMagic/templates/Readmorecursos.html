@@ -23,7 +23,9 @@
                             <tr>
                                 <th>Nombre</th>
                                 <th>Descripción</th>
+                                {% if user.is_staff %}
                                 <th>Acciones</th>
+                                {% endif %}
                             </tr>
                         </thead>
                         <tbody>
@@ -32,6 +34,7 @@
                                 <td>{{ grupo.get_nombre_display }}</td>
                                 <td>{{ grupo.descripcion }}</td>
                                 <td>
+                                    {% if user.is_staff %}
                                     <!-- Formulario para eliminar -->
                                     <form method="get" action="{% url 'eliminar_grupo' grupo.id %}" style="display: inline;">
                                         {% csrf_token %}
@@ -39,6 +42,7 @@
                                     </form>
                                     <!-- Enlace para editar -->
                                     <a href="{% url 'editar_grupo' grupo.id %}" class="btn btn-sm btn-primary">Editar</a>
+                                    {% endif %}
                                 </td>
                             </tr>
                             {% empty %}
@@ -49,9 +53,11 @@
                         </tbody>
                     </table>
                 </div>
+                {% if user.is_staff %}
                 <div class="text-center">
                     <a href="{% url 'crear_grupo' %}" class="btn btn-success">Crear Nuevo Grupo</a>
                 </div>
+                {% endif %}
             </div>
         </div>
 
@@ -75,7 +81,9 @@
                                 <th>Curso</th>
                                 <th>Grupos</th>
                                 <th>Descripción</th>
+                                {% if user.is_staff %}
                                 <th>Acciones</th>
+                                {% endif %}
                             </tr>
                         </thead>
                         <tbody>
@@ -90,6 +98,7 @@
                                 </td>
                                 <td>{{ curso.descripcion }}</td>                                
                                 <td>
+                                    {% if user.is_staff %}
                                     <!-- Formulario para eliminar -->
                                     <form method="get" action="{% url 'eliminar_curso' curso.id %}" style="display: inline;">
                                         {% csrf_token %}
@@ -98,6 +107,7 @@
                                     
                                     <!-- Enlace para editar -->
                                     <a href="{% url 'editar_curso' curso.id %}" class="btn btn-sm btn-primary">Editar</a>
+                                    {% endif %}
                                 </td>
                             </tr>
                             {% empty %}
@@ -108,9 +118,11 @@
                         </tbody>
                     </table>
                 </div>
+                {% if user.is_staff %}
                 <div class="text-center">
                     <a href="{% url 'crear_curso' %}" class="btn btn-success">Crear Nuevo Curso</a>
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>

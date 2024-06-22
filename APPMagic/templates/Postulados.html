@@ -12,11 +12,10 @@
                             <tr>
                                 <th>Nombre</th>
                                 <th>Apellido</th>
-                                <th>Email</th>
-                                <th>Profesión</th>
-                                <th>Cursos</th>
-                                <th>Hechizo favorito</th>
-                                <th>Criatura mágica</th>
+                                <th>Email</th>                                
+                                {% if request.user.is_staff %}
+                                    <th>Acciones</th> <!-- Columna para botones de acciones, solo visible para staff -->
+                                {% endif %}
                             </tr>
                         </thead>
                         <tbody>
@@ -24,15 +23,22 @@
                                 <tr>
                                     <td>{{ profesor.nombre }}</td>
                                     <td>{{ profesor.apellido }}</td>
-                                    <td>{{ profesor.email }}</td>
-                                    <td>{{ profesor.profesion }}</td>
-                                    <td>{{ profesor.Cursos }}</td>
-                                    <td>{{ profesor.hechizo_favorito }}</td>
-                                    <td>{{ profesor.criatura_magica }}</td>
+                                    <td>{{ profesor.email }}</td>                                    
+                                    {% if request.user.is_staff %}
+                                        <td>
+                                            <!-- Formulario para eliminar -->
+                                            <form method="get" action="{% url 'eliminar_profesor' profesor.id %}" style="display: inline;">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                                            </form>
+                                            <!-- Enlace para editar -->
+                                            <a href="{% url 'editar_profesor' profesor.id %}" class="btn btn-sm btn-primary">Editar</a>
+                                        </td>
+                                    {% endif %}
                                 </tr>
                             {% empty %}
                                 <tr>
-                                    <td colspan="3">No hay profesores registrados.</td>
+                                    <td colspan="{% if request.user.is_staff %}7{% else %}6{% endif %}">No hay profesores registrados.</td>
                                 </tr>
                             {% endfor %}
                         </tbody>
@@ -42,10 +48,11 @@
         </div>
     </div>
 
-        <div class="card mt-4">
+    <div class="card mt-4">
         <div class="card-body">
             <h2 class="card-title mb-4">Buscar Profesor</h2>
             <form method="get" action="{% url 'profesores_view' %}">
+                {% csrf_token %}
                 <div class="form-row">
                     <div class="form-group col-md-3">
                         <label for="id_nombre">Nombre:</label>
@@ -59,81 +66,96 @@
                         <label for="id_profesion">Profesión:</label>
                         <input type="text" id="id_profesion" name="profesion" class="form-control" value="{{ request.GET.profesion }}">
                     </div>
+                </div>
                 <br> 
                 <button type="submit" name="search" class="btn btn-primary">Buscar</button>
             </form>
         </div>
     </div>
+
     <div class="container mt-4">
         <!-- Resultados de Búsqueda -->
-{% if search_results %}
-    <div class="card mt-4">
-        <div class="card-body">
-            <h2 class="card-title mb-4">Resultados de la Búsqueda</h2>
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Email</th>
-                            <th>Profesión</th>
-                            <th>Acciones</th> <!-- Columna para botones de acciones -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for profesor in search_results %}
-                            <tr>
-                                <td>{{ profesor.nombre }}</td>
-                                <td>{{ profesor.apellido }}</td>
-                                <td>{{ profesor.email }}</td>
-                                <td>{{ profesor.profesion }}</td>
-                                <td>
-                                    <!-- Formulario para eliminar -->
-                                    <form method="get" action="{% url 'eliminar_profesor' profesor.id %}" style="display: inline;">
-                                        {% csrf_token %}
-                                        <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
-                                    </form>
-                                    <!-- Enlace para editar -->
-                                    <a href="{% url 'editar_profesor' profesor.id %}" class="btn btn-sm btn-primary">Editar</a>
-                                </td>
-                            </tr>
-                        {% empty %}
-                            <tr>
-                                <td colspan="5">No se encontraron resultados.</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+        {% if search_results %}
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h2 class="card-title mb-4">Resultados de la Búsqueda</h2>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Email</th>
+                                    <th>Profesión</th>
+                                    <th>Cursos</th>
+                                    <th>Hechizo favorito</th>
+                                    <th>Criatura mágica</th>
+                                    {% if request.user.is_staff %}
+                                        <th>Acciones</th> <!-- Columna para botones de acciones -->
+                                    {% endif %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for profesor in search_results %}
+                                    <tr>
+                                        <td>{{ profesor.nombre }}</td>
+                                        <td>{{ profesor.apellido }}</td>
+                                        <td>{{ profesor.email }}</td>
+                                        <td>{{ profesor.profesion }}</td>
+                                        <td>{{ profesor.Cursos }}</td>
+                                        <td>{{ profesor.hechizo_favorito }}</td>
+                                        <td>{{ profesor.criatura_magica }}</td>
+                                        {% if request.user.is_staff %}
+                                            <td>
+                                                <!-- Formulario para eliminar -->
+                                                <form method="get" action="{% url 'eliminar_profesor' profesor.id %}" style="display: inline;">
+                                                    {% csrf_token %}
+                                                    <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                                                </form>
+                                                <!-- Enlace para editar -->
+                                                <a href="{% url 'editar_profesor' profesor.id %}" class="btn btn-sm btn-primary">Editar</a>
+                                            </td>
+                                        {% endif %}
+                                    </tr>
+                                {% empty %}
+                                    <tr>
+                                        <td colspan="{% if request.user.is_staff %}5{% else %}4{% endif %}">No se encontraron resultados.</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-{% else %}
-    <div class="card mt-4">
-        <div class="card-body">
-            <h2 class="card-title mb-4">Resultados de la Búsqueda</h2>
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Email</th>
-                            <th>Profesión</th>
-                            <th>Acciones</th> <!-- Columna para botones de acciones -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td colspan="5">No se encontraron resultados.</td>
-                        </tr>
-                    </tbody>
-                </table>
+        {% else %}
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h2 class="card-title mb-4">Resultados de la Búsqueda</h2>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Email</th>
+                                    <th>Profesión</th>
+                                    <th>Cursos</th>
+                                    <th>Hechizo favorito</th>
+                                    <th>Criatura mágica</th>
+                                    {% if request.user.is_staff %}
+                                        <th>Acciones</th> <!-- Columna para botones de acciones -->
+                                    {% endif %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="{% if request.user.is_staff %}5{% else %}4{% endif %}">No se encontraron resultados.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-        </div>
+        {% endif %}
     </div>
-{% endif %}
-
-<br>
-
-{% endblock contenidobipolar%}
+{% endblock contenidobipolar %}

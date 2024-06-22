@@ -3,39 +3,51 @@
 {% block contenidobipolar %}
     <div class="container mt-4">
         <!-- Listado de Estudiantes -->
-        <div class="card">
-            <div class="card-body">
-                <h2 class="card-title mb-4">Lista de Estudiantes</h2>
-                <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Apellido</th>
-                                <th>Email</th>
-                                <th>Casa</th>
-                                <th>Habilidad Mágica</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for estudiante in mis_estudiantes %}
+        {% if request.user.is_staff %}
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title mb-4">Lista de Estudiantes</h2>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
                                 <tr>
-                                    <td>{{ estudiante.nombre }}</td>
-                                    <td>{{ estudiante.apellido }}</td>
-                                    <td>{{ estudiante.email }}</td>
-                                    <td>{{ estudiante.casa.nombre }}</td>
-                                    <td>{{ estudiante.habilidad_magica }}</td>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Email</th>
+                                    <th>Casa</th>
+                                    <th>Habilidad Mágica</th>
+                                    <th>Acciones</th>
                                 </tr>
-                            {% empty %}
-                                <tr>
-                                    <td colspan="5">No hay estudiantes registrados.</td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {% for estudiante in mis_estudiantes %}
+                                    <tr>
+                                        <td>{{ estudiante.nombre }}</td>
+                                        <td>{{ estudiante.apellido }}</td>
+                                        <td>{{ estudiante.email }}</td>
+                                        <td>{{ estudiante.casa.nombre }}</td>
+                                        <td>{{ estudiante.habilidad_magica }}</td>
+                                        <td>
+                                            <!-- Formulario para eliminar -->
+                                            <form method="post" action="{% url 'eliminar_estudiante' estudiante.id %}" style="display: inline;">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                                            </form>
+                                            <!-- Enlace para editar -->
+                                            <a href="{% url 'editar_estudiante' estudiante.id %}" class="btn btn-sm btn-primary">Editar</a>
+                                        </td>
+                                    </tr>
+                                {% empty %}
+                                    <tr>
+                                        <td colspan="6">No hay estudiantes registrados.</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
+        {% endif %}
     </div>
 
     <div class="card mt-4">
@@ -76,7 +88,9 @@
                                     <th>Email</th>
                                     <th>Casa</th>
                                     <th>Habilidad Mágica</th>
-                                    <th>Acciones</th> <!-- Columna para botones de acciones -->
+                                    {% if request.user.is_staff %}
+                                        <th>Acciones</th>
+                                    {% endif %}
                                 </tr>
                             </thead>
                             <tbody>
@@ -87,19 +101,21 @@
                                         <td>{{ estudiante.email }}</td>
                                         <td>{{ estudiante.casa.nombre }}</td>
                                         <td>{{ estudiante.habilidad_magica }}</td>
-                                        <td>
-                                            <!-- Formulario para eliminar -->
-                                            <form method="get" action="{% url 'eliminar_estudiante' estudiante.id %}" style="display: inline;">
-                                                {% csrf_token %}
-                                                <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
-                                            </form>
-                                            <!-- Enlace para editar -->
-                                            <a href="{% url 'editar_estudiante' estudiante.id %}" class="btn btn-sm btn-primary">Editar</a>
-                                        </td>
+                                        {% if request.user.is_staff %}
+                                            <td>
+                                                <!-- Formulario para eliminar -->
+                                                <form method="post" action="{% url 'eliminar_estudiante' estudiante.id %}" style="display: inline;">
+                                                    {% csrf_token %}
+                                                    <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                                                </form>
+                                                <!-- Enlace para editar -->
+                                                <a href="{% url 'editar_estudiante' estudiante.id %}" class="btn btn-sm btn-primary">Editar</a>
+                                            </td>
+                                        {% endif %}
                                     </tr>
                                 {% empty %}
                                     <tr>
-                                        <td colspan="6">No se encontraron resultados.</td>
+                                        <td colspan="{% if request.user.is_staff %}6{% else %}5{% endif %}">No se encontraron resultados.</td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
@@ -120,12 +136,14 @@
                                     <th>Email</th>
                                     <th>Casa</th>
                                     <th>Habilidad Mágica</th>
-                                    <th>Acciones</th> <!-- Columna para botones de acciones -->
+                                    {% if request.user.is_staff %}
+                                        <th>Acciones</th>
+                                    {% endif %}
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td colspan="6">No se encontraron resultados.</td>
+                                    <td colspan="{% if request.user.is_staff %}6{% else %}5{% endif %}">No se encontraron resultados.</td>
                                 </tr>
                             </tbody>
                         </table>

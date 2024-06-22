@@ -1,5 +1,6 @@
-
+import os
 from pathlib import Path
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +27,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'APPMagic'
+    'APPMagic',
+    'Usuario'
+    
 ]
 
 MIDDLEWARE = [
@@ -123,3 +126,11 @@ EMAIL_HOST_USER = 'luminaracontactenos@gmail.com'  # Tu dirección de correo ele
 EMAIL_HOST_PASSWORD = ''  # Tu contraseña de correo electrónico
 
 #---- No se logra generar la configuración de conexión desde el gmail, no figura la opción correspondoente para generar la contraseña de la APP. 
+
+
+#Se suma la variable para los decoradores
+
+LOGIN_URL ='/Usuario/login'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

@@ -1,0 +1,18 @@
+{% extends 'Base.html' %}
+
+{% block contenidobipolar %}
+
+<br>
+<div class="container">
+    <h2>Iniciar sesión</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+    </form>
+    <br>
+    <div class="text-center">
+        <p>¿No tienes una cuenta? <a href="{% url 'register' %}" class="btn btn-success">Regístrate</a></p>
+    </div>
+</div>
+{% endblock contenidobipolar %}

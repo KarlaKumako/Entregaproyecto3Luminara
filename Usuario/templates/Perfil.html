@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block contenidobipolar %}
+
+{% load static %}
+{% if user.is_authenticated %}
+<div class="container mt-4">
+    <h1>Perfil de {{ user.username }}</h1>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3 text-center mb-3">
+                    {% if avatar %}
+                    <img src="{{ avatar.imagen.url }}" alt="Avatar de {{ user.username }}" class="img-fluid rounded-circle mb-2" style="width: 150px; height: 150px;">
+                    {% else %}
+                    <img src="{% static 'path/to/default_avatar.png' %}" alt="Avatar predeterminado" class="img-fluid rounded-circle mb-2" style="width: 150px; height: 150px;">
+                    {% endif %}
+                    <form method="post" enctype="multipart/form-data">{% csrf_token %}                        
+                        <div class="form-group">
+                            <label for="id_imagen" class="form-label-sm">Seleccionar imagen de perfil:</label>
+                            <input type="file" class="form-control-file form-control-sm" id="id_imagen" name="imagen">
+                        </div>
+                        <button type="submit" class="btn btn-sm btn-primary">Guardar</button>{% csrf_token %} 
+                    </form>
+                </div>
+                <div class="col-md-9">
+                    <p><strong>Username:</strong> {{ user.username }}</p>
+                    <p><strong>Nombre:</strong> {{ user.first_name }}</p>
+                    <p><strong>Apellido:</strong> {{ user.last_name }}</p>
+                    <p><strong>Email:</strong> {{ user.email }}</p>
+                    <div class="d-flex justify-content-start">
+                        <a href="{% url 'editar_perfil' %}" class="btn btn-sm btn-primary mr-2">Editar Perfil</a>
+                        
+                        <a href="{% url 'cambiar_contraseña' %}" class="btn btn-sm btn-secondary">Cambiar Contraseña</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% endblock contenidobipolar %}
