@@ -38,3 +38,32 @@ Observaciones:
    User: ProyectoLuminara
    Contraseña: 12345Luminara
 Version: 2.5
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+Nueva versión: 3.0
+
+Profesores: 
+
+Se suma la opción de registro para postulantes solo para usuarios logueados, permitiendo asi tener un control sobre esta información se suma al rol de staff la posibilidad de ver el listado de profesores con la posibilidad de buscar, eliminar o editar a los mismos. 
+
+Estudiantes: 
+
+Se suma al igual que con los profesores la posibilidad de registrar sus datos como postulante a nuevo estudiante, por otro lado se suma la posibilidad de listar por el usuario de staff los estudiantes, eliminarlos o editarlos. 
+
+Cursos:
+Debido al tiempo no llegue a realizar el read more mas especifico de acuerdo a cada curso, sin embargo sume una pagina en donde puede ingresar el usuario registrado para verificar los cursos y los grupos de estudiantes de acuerdo al año de cursada. Por otro lado el staff tiene el acceso a modificar o eliminar tantos cursos como erstudiantes. 
+
+Contactanos:
+
+Se genera toda la estructura para generar el contacto en donde llegue por mail el mismo sin embargo por incidencias con google no se logra configurar desde alli la acción, en donde no se logra encontrar la opcion de contraseña para app, debido a esto queda listo para usar pero sin la accion disponible. 
+
+La opcion contraseña de aplicaciones aparece con el factor de dos para el ingreso sin embargo a pesar de seguir todos los pasos de la documentación de google no logre que apareciera la opción para poder unificar este punto. :(
+
+Link de tutorial que se intenta seguir_: https://www.google.com/search?client=opera-gx&q=contactenos+con+django+enviando+mail&sourceid=opera&ie=UTF-8&oe=UTF-8#fpstate=ive&vld=cid:4f0c8b73,vid:3jtMdcvBA3c,st:0
+
+Seguridad: Se genera una segunda APP para todo el dash de usuarios, en donde sumamos la posibilidad del registro, log in, log out,  modificación de perfil, sumar imagenes de avatar, y ademas modificar por separado la contraseña.
+
+
+NOTA IMPORTANTE: Al generar estos cambios y sumar los decoradores correspondiente sobre el usuario de staff y el logueo del usuario se identifican incidencias con las acciones de eliminar y modificar sobre toda la plataforma, la terminar no arroja errores, verifique la documentación al respecto, busque información pero no encontre casos de uso al respecto, intente sumar ademas puntos de seguridad sobre los templates de los cuales identifico viene el error, ** al accionar cualquiera de los botones desloguea al usuario no permitiendo asi seguir con la gestión*** antes de generar al dash de seguridad se comprobo que todo funcionaba optimo pero al sumarlo paso esto. 
